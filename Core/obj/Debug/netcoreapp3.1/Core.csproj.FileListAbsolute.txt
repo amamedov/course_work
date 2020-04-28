@@ -1,0 +1,12 @@
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Users\Admin\source\repos\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Users\Admin\source\repos\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Admin\source\repos\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.csproj.CopyComplete
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Admin\source\repos\Core\bin\Debug\netcoreapp3.1\Models.dll
+C:\Users\Admin\source\repos\Core\bin\Debug\netcoreapp3.1\Models.pdb
+C:\Users\Admin\source\repos\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache

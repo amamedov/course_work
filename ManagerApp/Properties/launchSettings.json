@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ManagerApp": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\bin\\Debug\\netcoreapp3.1\\ManagerApp.exe",
+      "commandLineArgs": "\"Server=DESKTOP-1OJ7R9S\\SQLEXPRESS;Initial Catalog=Course_work_Mamedov;Integrated Security=True\""
+    }
+  }
+}

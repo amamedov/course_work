@@ -1,0 +1,25 @@
+﻿<Window x:Class="ManagerApp.SubjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagerApp"
+        mc:Ignorable="d"
+        Title="SubjectWindow" Height="238" Width="445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="16" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 20">Enter information about subject</TextBlock>
+        <TextBlock Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 20">Subject name:</TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" FontSize="16" x:Name="TextBoxName" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="10 15"></TextBox>
+        <Button Grid.Row="2" FontSize="16" Margin="10 15" Padding="10 15" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="ButtonCancel" Click="ButtonCancel_Click">Cancel</Button>
+        <Button Grid.Column="1" Grid.Row="2" FontSize="16" Margin="10 15" x:Name="ButtonSubmit" Padding="10 15" HorizontalAlignment="Center" VerticalAlignment="Center" Click="ButtonSubmit_Click">Submit</Button>
+    </Grid>
+</Window>
