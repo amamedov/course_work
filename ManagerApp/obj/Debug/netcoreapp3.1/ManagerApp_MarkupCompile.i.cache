@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1
 C:\Users\Admin\source\repos\course_work\ManagerApp\App.xaml
-5102048918
+7-725250886
 
-81267651146
+10-287829449
 2291988585062
-AddStudent.xaml;MainWindow.xaml;MakeContractWindow.xaml;MakeCourse.xaml;SubjectWindow.xaml;
+AddStudent.xaml;LessonWindow.xaml;MainWindow.xaml;MakeContractWindow.xaml;MakeCourse.xaml;SubjectWindow.xaml;TimetableWindow.xaml;
 
 False
 

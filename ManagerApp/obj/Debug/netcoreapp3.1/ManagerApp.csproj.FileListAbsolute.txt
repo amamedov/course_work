@@ -232,3 +232,7 @@ C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\Manag
 C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\ManagerApp.dll
 C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\ManagerApp.pdb
 C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\ManagerApp.genruntimeconfig.cache
+C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\TimetableWindow.g.cs
+C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\TimetableWindow.baml
+C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\LessonWindow.g.cs
+C:\Users\Admin\source\repos\course_work\ManagerApp\obj\Debug\netcoreapp3.1\LessonWindow.baml

@@ -22,7 +22,7 @@ namespace cOURSEwoRK
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ManagerMainWindow : Window
     {
         int managerID = 1;
         Repository repository;
@@ -30,18 +30,19 @@ namespace cOURSEwoRK
 
         private void UpdateListboxes()
         {
-            this.repository.UpdateCourses(managerID: managerID);
-            this.repository.UpdateContracts(managerID: managerID);
+            this.repository.UpdateCourses();
+            this.repository.UpdateContracts();
             ListBoxContracts.ItemsSource = repository.Contracts;
             ListBoxCourses.ItemsSource = repository.Courses;
         }
-        public MainWindow(string connString)
+        public ManagerMainWindow(string connString, Repository repository, int managerID)
         {
             InitializeComponent();
             this.connString = connString;
             this.repository = new Repository(connString);
-            UpdateListboxes();
-            ComboBoxSubjectFilter.ItemsSource = DBUtils.GetSubjects(connString);
+            ListBoxContracts.ItemsSource = repository.Contracts;
+            ListBoxCourses.ItemsSource = repository.Courses;
+            ComboBoxSubjectFilter.ItemsSource = repository.Subjects;
             ComboBoxStudentFilter.ItemsSource = repository.Students;
             ComboBoxCourseFilter.ItemsSource = repository.Courses;
             ListBoxStudents.ItemsSource = repository.Students;
@@ -49,6 +50,7 @@ namespace cOURSEwoRK
             ButtonDeleteCourse.IsEnabled = false;
             ButtonDeleteContract.IsEnabled = false;
             ButtonMarkAsPaid.IsEnabled = false;
+            ButtonTimetable.IsEnabled = false;
 
             //this.managerID = managerID;
         }
@@ -112,7 +114,7 @@ namespace cOURSEwoRK
 
         private void ButtonRefreshContracts_Click(object sender, RoutedEventArgs e)
         {
-            repository.UpdateContracts(managerID: managerID);
+            repository.UpdateContracts();
             ListBoxContracts.ItemsSource = repository.Contracts;
             ButtonDeleteContract.IsEnabled = false;
             ButtonMarkAsPaid.IsEnabled = false;
@@ -131,7 +133,7 @@ namespace cOURSEwoRK
 
         private void ClearButton_1_Click(object sender, RoutedEventArgs e)
         {
-            this.repository.UpdateContracts(managerID: managerID);
+            this.repository.UpdateContracts();
             ListBoxContracts.ItemsSource = repository.Contracts;
             ComboBoxStudentFilter.SelectedItem = null;
             ComboBoxCourseFilter.SelectedItem = null;
@@ -152,11 +154,13 @@ namespace cOURSEwoRK
         #region Courses
         private void ButtonAddCourse_Click(object sender, RoutedEventArgs e)
         {
-            var courseWindow = new MakeCourse(managerID, connString);
+            var courseWindow = new MakeCourse(managerID, connString, repository);
             Hide();
             courseWindow.ShowDialog();
             Show();
             TextBlockCourseInfo.Text = "Please refresh info";
+            repository.UpdateCourses();
+            ComboBoxCourseFilter.ItemsSource = repository.Courses;
         }
 
         private void ButtonRefreshCourses_Click(object sender, RoutedEventArgs e)
@@ -165,12 +169,14 @@ namespace cOURSEwoRK
             TextBlockCourseInfo.Text = "Choose course to view info";
             ButtonChangeCourse.IsEnabled = false;
             ButtonDeleteCourse.IsEnabled = false;
+            ButtonTimetable.IsEnabled = false;
         }
 
         private void ListBoxCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ButtonChangeCourse.IsEnabled = true;
             ButtonDeleteCourse.IsEnabled = true;
+            ButtonTimetable.IsEnabled = true;
             if (ListBoxContracts.SelectedItems.Count > 1)
             {
                 ListBoxContracts.SelectedItems.RemoveAt(0);
@@ -180,7 +186,13 @@ namespace cOURSEwoRK
                 TextBlockCourseInfo.Text = $"Name: {chosenCourse.Name}; Dates: {chosenCourse.StartDate.ToShortDateString()}-{chosenCourse.EndDate.ToShortDateString()}; " +
                     $"Price:{chosenCourse.Price};  Exam: {chosenCourse.FollowedByExam}; Requirements: {chosenCourse.HasRequirements} ";
         }
-
+        private void ButtonTimetable_Click(object sender, RoutedEventArgs e)
+        {
+            var timetableWindow = new TimetableWindow(repository, (Course)ListBoxCourses.SelectedItem);
+            Hide();
+            timetableWindow.ShowDialog();
+            Show();
+        }
         private void ButtonDeleteCourse_Click(object sender, RoutedEventArgs e)
         {
             Course course = (Course)ListBoxCourses.SelectedItem;
@@ -192,7 +204,7 @@ namespace cOURSEwoRK
         private void ButtonChangeCourse_Click(object sender, RoutedEventArgs e)
         {
             var course = (Course)ListBoxCourses.SelectedItem;
-            var courseWindow = new MakeCourse(managerID, connString, course);
+            var courseWindow = new MakeCourse(managerID, connString,repository, course);
             Hide();
             courseWindow.ShowDialog();
             Show();
@@ -206,7 +218,8 @@ namespace cOURSEwoRK
             Hide();
             subjectWindow.ShowDialog();
             Show();
-            ComboBoxSubjectFilter.ItemsSource = DBUtils.GetSubjects(connString);
+            repository.UpdateSubjects();
+            ComboBoxSubjectFilter.ItemsSource = repository.Subjects;
         }
 
         private void ComboBoxSubjectFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -221,7 +234,7 @@ namespace cOURSEwoRK
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            this.repository.UpdateCourses(managerID: managerID);
+            this.repository.UpdateCourses();
             ListBoxCourses.ItemsSource = repository.Courses;
             ComboBoxSubjectFilter.SelectedItem = null;
         }
@@ -259,7 +272,11 @@ namespace cOURSEwoRK
         {
             var studentWindow = new AddStudent(connString);
             studentWindow.ShowDialog();
+            repository.UpdateStudents();
+            ComboBoxStudentFilter.ItemsSource = repository.Students;
         }
+        #endregion
+        
     }
-    #endregion
+    
 }

@@ -1,0 +1,45 @@
+﻿<Window x:Class="ManagerApp.TimetableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagerApp"
+        mc:Ignorable="d"
+        Title="TimetableWindow" Height="450" Width="930" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="ButtonAdd" Click="ButtonAdd_Click" FontSize="16" HorizontalAlignment="Center" Padding="25 15" VerticalAlignment="Center">Add</Button>
+        <Button x:Name="ButtonClose" Grid.Row="1" FontSize="16" HorizontalAlignment="Center" Padding="25 15" VerticalAlignment="Center" Click="ButtonClose_Click">Close</Button>
+        <StackPanel Grid.RowSpan="2" Grid.Column="1">
+            <StackPanel Orientation="Horizontal" Margin="10 1">
+                <TextBlock Width="80" TextAlignment="Center" Text="Date"  FontSize="16" Margin="10 15" VerticalAlignment="Center"></TextBlock>
+                <TextBlock Width="50" TextAlignment="Center" FontSize="16" Text="Time" VerticalAlignment="Center" Margin="10 15"></TextBlock>
+                <TextBlock  Width="70" TextAlignment="Center" FontSize="16" Text="Duration" VerticalAlignment="Center" Margin="10 15"></TextBlock>
+                <TextBlock Width="60" TextAlignment="Center" FontSize="16" Text="Room" VerticalAlignment="Center" Margin="10 15"></TextBlock>
+                <TextBlock Width="120" TextAlignment="Center" FontSize="16" Text="Teacher" VerticalAlignment="Center" Margin="10 15"></TextBlock>
+                <TextBlock Width="250" TextAlignment="Center" FontSize="16" Text="Address" VerticalAlignment="Center" Margin="10 15"></TextBlock>
+            </StackPanel>
+            <ListBox MouseDoubleClick="ListBoxLessons_MouseDoubleClick"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" x:Name="ListBoxLessons" Grid.Column="1" Grid.RowSpan="2" BorderThickness="1" VerticalAlignment="Stretch" Margin="10 1">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Width="80" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=Date}"></TextBlock>
+                            <TextBlock Width="50" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=StartTime}"></TextBlock>
+                            <TextBlock Width="70" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=Duration}"></TextBlock>
+                            <TextBlock Width="60" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=Room.Name}"></TextBlock>
+                            <TextBlock Width="120" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=Teacher.Fullname}"></TextBlock>
+                            <TextBlock Width="250" TextAlignment="Center" Margin="10 5" FontSize="16" Text="{Binding Path=Room.Building.Address}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+    </Grid>
+</Window>

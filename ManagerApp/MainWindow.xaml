@@ -1,4 +1,4 @@
-﻿<Window x:Class="cOURSEwoRK.MainWindow"
+﻿<Window x:Class="cOURSEwoRK.ManagerMainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,6 +41,7 @@
                         <Button x:Name="ButtonAddSubject" FontSize="16" Height="auto" Margin="15  10" Padding="15 10" Click="ButtonAddSubject_Click">Add subject</Button>
                         <Button x:Name="ButtonDeleteCourse" FontSize="16" Height="auto" Margin="15 10" Padding="15 10" Click="ButtonDeleteCourse_Click">Delete</Button>
                         <Button x:Name="ButtonChangeCourse" FontSize="16" Height="auto" Margin="15 10" Padding="15 10" Click="ButtonChangeCourse_Click">Change</Button>
+                        <Button x:Name="ButtonTimetable" Click="ButtonTimetable_Click" FontSize="16" Height="auto" Margin="15 10" Padding="15 10">Manage timetable</Button>
                         <Button x:Name="ButtonRefreshCourses" FontSize="16" Margin="15 10" Padding="15 10" Click="ButtonRefreshCourses_Click">Refresh</Button>
                     </StackPanel>
                     <Button x:Name="ButtonExit" Click="ButtonExit_Click"  FontSize="16" Height="auto" Margin="25,0,25,15" Padding="15 10" VerticalAlignment="Bottom" Grid.ColumnSpan="1">Exit</Button>

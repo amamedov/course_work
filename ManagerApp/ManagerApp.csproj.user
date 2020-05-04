@@ -5,7 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>ManagerApp</ActiveDebugProfile>
-    <ShowAllFiles>true</ShowAllFiles>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
     <ApplicationDefinition Update="App.xaml">
@@ -14,6 +14,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AddStudent.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LessonWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="MakeContractWindow.xaml.cs">
@@ -25,9 +28,15 @@
     <Compile Update="SubjectWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TimetableWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="AddStudent.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="LessonWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
@@ -40,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SubjectWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TimetableWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

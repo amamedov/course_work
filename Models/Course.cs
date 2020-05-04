@@ -16,6 +16,7 @@ namespace Models
         public bool HasRequirements { get; set; }
         public double Price { get; set; }
         public int SubjectID { get; set; }
+        public List<Lesson> Lessons { get; set; }
         public string ToListBox { get { return $"Name: {Name}  Duration: {StartDate.ToShortDateString()} - {EndDate.ToShortDateString()} Price: {Price}"; } }
 
         public Course(int id, int subjectID, string name, int managerID, DateTime startDate, DateTime endDate, int typeID, bool followedByExam, bool hasRequirements, double price)
@@ -30,6 +31,7 @@ namespace Models
             FollowedByExam = followedByExam;
             HasRequirements = hasRequirements;
             Price = price;
+            Lessons = new List<Lesson>();
         }
         public override string ToString()
         {

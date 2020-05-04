@@ -1,0 +1,40 @@
+﻿<Window x:Class="ManagerApp.LessonWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManagerApp"
+        mc:Ignorable="d"
+        Title="LessonWindow" Height="450" Width="800" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">Choose teacher:</TextBlock>
+        <ComboBox x:Name="ComboBoxTeacher" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="16" VerticalAlignment="Center" Margin="10 15"></ComboBox>
+        <TextBlock Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">Choose room:</TextBlock>
+        <ComboBox x:Name="ComboBoxRoom" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="16" VerticalAlignment="Center" Margin="10 15"></ComboBox>
+        <TextBlock  Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">Choose date:</TextBlock>
+        <DatePicker x:Name="DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15"></DatePicker>
+        <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">Choose time:</TextBlock>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <ComboBox x:Name="ComboBoxStartHour" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">:</TextBlock>
+            <ComboBox x:Name="ComboBoxStartMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15"> - </TextBlock>
+            <ComboBox x:Name="ComboBoxEndHour" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">:</TextBlock>
+            <ComboBox x:Name="ComboBoxEndMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
+        </StackPanel>
+        <Button Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="10 15" x:Name="ButtonClose" Click="ButtonClose_Click">Cancel</Button>
+        <Button Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="20 15" x:Name="ButtonAdd" Click="ButtonAdd_Click">Add</Button>
+    </Grid>
+</Window>

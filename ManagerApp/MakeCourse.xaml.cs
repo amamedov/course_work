@@ -23,13 +23,13 @@ namespace ManagerApp
         int managerID;
         Course course;
         string connString;
-        public MakeCourse(int managerID, string connString, Course course = null)
+        public MakeCourse(int managerID, string connString, Repository repository, Course course = null)
         {
             InitializeComponent();
             this.connString = connString;
             this.managerID = managerID;
-            ComboBoxSubject.ItemsSource = DBUtils.GetSubjects(connString);
-            ComboBoxTypeOfCourse.ItemsSource = DBUtils.GetTypeOfCourses(connString);
+            ComboBoxSubject.ItemsSource = repository.Subjects;
+            ComboBoxTypeOfCourse.ItemsSource = repository.TypeOfCourses;
             if (course != null)
             {
                 TextBoxName.Text = course.Name;

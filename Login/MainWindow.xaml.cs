@@ -50,20 +50,9 @@ namespace Login
                 {
                     if (repository.Managers.Any(x => x.Name == name && x.Surname==surname))
                     {
-
-                        var startInfo = new ProcessStartInfo();
-                        startInfo.FileName = "../../../../ManagerApp/bin/Debug/netcoreapp3.1/ManagerApp.exe";
-                        startInfo.WindowStyle = ProcessWindowStyle.Normal;
-                        startInfo.Arguments = $"\"{connString}\"";
-                        startInfo.ErrorDialog = true;
-                        startInfo.CreateNoWindow = false;
-                        startInfo.RedirectStandardOutput = true;
-                        startInfo.UseShellExecute = false;
-                        using (var process = Process.Start(startInfo).StandardOutput)
-                        {
-
-                            Close();
-                        }
+                        var managerApp = new cOURSEwoRK.ManagerMainWindow(connString, repository, repository.Managers.First(x => x.Name == name && x.Surname == surname).ID);
+                        managerApp.Show();
+                        Close();
                     }
                     else
                     {

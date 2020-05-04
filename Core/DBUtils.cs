@@ -8,6 +8,7 @@ using System.IO;
 using Models;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace Core
 {
@@ -33,58 +34,84 @@ namespace Core
         }
 
 
-        public static List<Contract> GetContracts(string connString, int? managerID = null, int? studentID = null) //TODO: найти запросы с возвращаемыми строками
+        public static List<Contract> GetContracts(string connString)
         {
             List<Contract> contracts = new List<Contract>();
-            if (managerID != null)
+
+            var query = $"select * from Contract";
+            using (SqlConnection connection = new SqlConnection(connString))
             {
-                var query = $"select * from Contract where ManagerID={managerID}";
-                using (SqlConnection connection = new SqlConnection(connString))
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Connection.Open();
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var contract = new Contract(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3),
-                            reader.GetBoolean(4), reader.GetBoolean(6), reader.GetDateTime(7));
-                        contracts.Add(contract);
-                    }
+                    var contract = new Contract(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3),
+                        reader.GetBoolean(4), reader.GetBoolean(6), reader.GetDateTime(7));
+                    contracts.Add(contract);
                 }
+
             }
-            else if (studentID != null)
-            {
-                var query = $"select * from Contract where StudentID={studentID}";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Connection.Open();
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var contract = new Contract(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3),
-                            reader.GetBoolean(4), reader.GetBoolean(6), reader.GetDateTime(7));
-                        contracts.Add(contract);
-                    }
-                }
-            }
-            else
-            {
-                var query = $"select * from Contract";
-                using (SqlConnection connection = new SqlConnection(connString))
-                {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Connection.Open();
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var contract = new Contract(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3),
-                            reader.GetBoolean(4), reader.GetBoolean(6), reader.GetDateTime(7));
-                        contracts.Add(contract);
-                    }
-                }
-            }
+
             return contracts;
+        }
+        public static List<Lesson> GetLessons(string connString)
+        {
+            var lessons = new List<Lesson>();
+            var query = "select * from Lesson";
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var lesson = new Lesson(reader.GetInt32(0), reader.GetInt32(1), reader.GetInt32(2), reader.GetInt32(3),
+                        reader.GetDateTime(4), reader.GetDateTime(5));
+                    lessons.Add(lesson);
+                }
+            }
+            return lessons;
+        }
+        public static List<Building> GetBuildings(string connString)
+        {
+            List<Building> buildings = new List<Building>();
+
+            var query = $"select * from Building";
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var building = new Building(reader.GetInt32(0), reader.GetString(1));
+                    buildings.Add(building);
+                }
+
+            }
+
+            return buildings;
+        }
+        public static List<Room> GetRooms(string connString)
+        {
+            List<Room> rooms = new List<Room>();
+
+            var query = $"select * from Room";
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var room = new Room(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetBoolean(3), reader.GetBoolean(4), reader.GetInt32(5));
+                    rooms.Add(room);
+                }
+
+            }
+
+            return rooms;
         }
 
         public static int DeleteContract(Contract contract, string connString)
@@ -120,7 +147,7 @@ namespace Core
         {
             var managers = new List<Manager>();
             var query = "select * from Employee as e join Manager as m on m.EmployeeID = e.ID";
-            using (SqlConnection connection = new SqlConnection(connString)) 
+            using (SqlConnection connection = new SqlConnection(connString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Connection.Open();
@@ -133,26 +160,42 @@ namespace Core
                 return managers;
             }
         }
+        public static List<Teacher> GetTeachers(string connString)
+        {
+            var teachers = new List<Teacher>();
+            var query = "select * from Employee as e join Teacher as t on t.EmployeeID = e.ID";
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var teacher = new Teacher(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetInt32(6));
+                    teachers.Add(teacher);
+                }
+                return teachers;
+            }
+        }
 
-        public static List<Course> GetCourses(string connString, int? managerID = null, int? studentID = null, int? teacherID = null)
+        public static List<Course> GetCourses(string connString)
         {
             var courses = new List<Course>();
-            if (managerID != null)
+
+            var query = $"select * from Course";
+            using (SqlConnection connection = new SqlConnection(connString))
             {
-                var query = $"select * from Course where ManagerID={managerID}";
-                using (SqlConnection connection = new SqlConnection(connString))
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
                 {
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.Connection.Open();
-                    var reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        var course = new Course(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetInt32(6), reader.GetDateTime(3), reader.GetDateTime(4),
-                            reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5));
-                        courses.Add(course);
-                    }
+                    var course = new Course(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetInt32(6), reader.GetDateTime(3), reader.GetDateTime(4),
+                        reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5));
+                    courses.Add(course);
                 }
             }
+
             return courses;
         }
         public static int AddCourse(string name, DateTime startDate, DateTime endDate, double price, int managerID, bool followedByExam,
@@ -161,7 +204,7 @@ namespace Core
             string query = $"declare @typeID int = (select top 1 id from TypeOfCourse where name='{type}');" +
                 $"declare @subjectID int = (select top 1 id from Subject where name='{subject}');" +
                 $"insert into Course values ('{name}', @subjectID, '{startDate}', '{endDate}', {price}, " +
-                $"{managerID}, {(followedByExam?1:0)}, {(hasRequirements?1:0)}, @typeID, 1)";
+                $"{managerID}, {(followedByExam ? 1 : 0)}, {(hasRequirements ? 1 : 0)}, @typeID, 1)";
             return ExecuteNonQuery(query, connString);
         }
 
@@ -172,13 +215,20 @@ namespace Core
         }
 
         public static int UpdateCourse(Course course, string name, DateTime startDate, DateTime endDate, double price, int managerID, bool followedByExam,
-            bool hasRequirements, string type, string subject, string connString) 
+            bool hasRequirements, string type, string subject, string connString)
         {
             string query = $"declare @typeID int = (select top 1 id from TypeOfCourse where name='{type}');" +
                 $"declare @subjectID int = (select top 1 id from Subject where name='{subject}');" +
                 $"update Course set name='{name}', subjectID=@subjectID, StartDate='{startDate}', EndDate='{endDate}', Price = {price}, " +
-                $"ManagerID={managerID}, FollowedByExam={(followedByExam?1:0)}, HasRequirements={(hasRequirements?1:0)}, TypeOfCourseID=@typeID, IsActive = 1" +
+                $"ManagerID={managerID}, FollowedByExam={(followedByExam ? 1 : 0)}, HasRequirements={(hasRequirements ? 1 : 0)}, TypeOfCourseID=@typeID, IsActive = 1" +
                 $"where ID={course.ID}";
+            return ExecuteNonQuery(query, connString);
+        }
+        public static int UpdateLesson(int id, int teacherID, int roomID, DateTime dtStart, DateTime dtEnd, string connString)
+        {
+            var query = $"update Lesson " +
+                $"set TeacherID = {teacherID}, RoomID = {roomID}, DTStart = '{dtStart}', DTEnd='{dtEnd}'" +
+                $"where id = {id}";
             return ExecuteNonQuery(query, connString);
         }
         public static int AddSubject(string name, string connString)
@@ -224,12 +274,17 @@ namespace Core
         public static int AddStudent(string name, string surname, DateTime dateTime, string gender, string connString)
         {
             var query = $"insert into Student values ('{name}', '{surname}', '{dateTime}', '{gender}')";
-            return ExecuteNonQuery(query,connString);
+            return ExecuteNonQuery(query, connString);
         }
 
         public static int UpdateStudent(Student student, string connString)
         {
             var query = $"update Student set name='{student.Name}', surname='{student.Surname}', DateOfBirth = '{student.DoB}', gender='{student.Gender}' where id ={student.ID}";
+            return ExecuteNonQuery(query, connString);
+        }
+        public static int AddLesson(int teacherID, int courseID, int roomID, DateTime dtStart, DateTime dtEnd, string connString)
+        {
+            var query = $"insert into Lesson values ({teacherID},{courseID},{roomID}, '{dtStart}','{dtEnd}')";
             return ExecuteNonQuery(query, connString);
         }
     }
