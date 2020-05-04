@@ -4940,11 +4940,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj",
+      "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj",
       "projectName": "Core",
-      "projectPath": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj",
+      "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Admin\\source\\repos\\Core\\obj\\",
+      "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4963,8 +4963,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {
-              "projectPath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj"
+            "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj"
             }
           }
         }

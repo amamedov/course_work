@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\Startup\\Startup.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Startup\\Startup.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\Core\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj"
+              "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj"
               }
             }
           }
@@ -73,14 +73,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj",
         "projectName": "ManagerApp",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -99,8 +99,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj"
+              "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj"
               }
             }
           }
@@ -135,14 +135,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\Models\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -193,14 +193,14 @@
         }
       }
     },
-    "C:\\Users\\Admin\\source\\repos\\Startup\\Startup.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Startup\\Startup.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Startup\\Startup.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\Startup\\Startup.csproj",
         "projectName": "Startup",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\Startup\\Startup.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Startup\\Startup.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\Startup\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Startup\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -219,14 +219,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\Core\\Core.csproj"
+              "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Core\\Core.csproj"
               },
-              "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj"
+              "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj"
               },
-              "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {
-                "projectPath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj"
+              "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
+                "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj"
               }
             }
           }

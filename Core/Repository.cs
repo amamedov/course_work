@@ -11,11 +11,14 @@ namespace Core
         public List<Contract> Contracts { get; set; }
         public List<Student> Students { get; set; }
         public List<Course> Courses { get; set; }
+        public List<Manager> Managers { get; set; }
+        public List<Teacher> Teachers { get; set; }
         public string ConnString { get; set; }
         public Repository(string connString)
         {
             ConnString = connString;
             Students = DBUtils.GetStudents(connString);
+            Managers = DBUtils.GetManagers(connString);
         }
 
         public void UpdateContracts(int? managerID=2,int? studentID=null)

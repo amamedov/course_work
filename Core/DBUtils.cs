@@ -116,6 +116,23 @@ namespace Core
                 return students;
             }
         }
+        public static List<Manager> GetManagers(string connString)
+        {
+            var managers = new List<Manager>();
+            var query = "select * from Employee as e join Manager as m on m.EmployeeID = e.ID";
+            using (SqlConnection connection = new SqlConnection(connString)) 
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    var manager = new Manager(reader.GetInt32(0), reader.GetString(1), reader.GetString(2), reader.GetDateTime(3), reader.GetInt32(6));
+                    managers.Add(manager);
+                }
+                return managers;
+            }
+        }
 
         public static List<Course> GetCourses(string connString, int? managerID = null, int? studentID = null, int? teacherID = null)
         {

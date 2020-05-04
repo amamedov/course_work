@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {}
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj": {
+    "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj",
+        "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\source\\repos\\Models\\obj\\",
+        "outputPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

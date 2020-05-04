@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Login": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\Admin\\source\\repos\\course_work\\Login\\bin\\Debug\\netcoreapp3.1\\Login.exe",
+      "commandLineArgs": "\"Server=DESKTOP-1OJ7R9S\\SQLEXPRESS;Initial Catalog=Course_work_Mamedov;Integrated Security=True\""
+    }
+  }
+}

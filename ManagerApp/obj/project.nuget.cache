@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6b8zv/DmQyvPkvjS2FP3CdpdPRHLHKvLIa7AbChkfl8yqpoGk3v/pI49Z1Nt9q8VjlMjzEx79lWyjLfvwEOViA==",
+  "dgSpecHash": "AwkC5CrOuh0tSNxVzOQZYJKD11bONNlymdGZIZ51Ib1KittKV8gNyUO5rviUybOzWmMqjbPZZkapY7E+VdPCjg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\ManagerApp\\ManagerApp.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\course_work\\ManagerApp\\ManagerApp.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.data.sqlclient\\1.1.1\\microsoft.data.sqlclient.1.1.1.nupkg.sha512",

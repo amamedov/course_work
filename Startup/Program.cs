@@ -71,7 +71,7 @@ namespace Startup
                 }
             }
             var startInfo = new ProcessStartInfo();
-            startInfo.FileName = "../../../../ManagerApp/bin/Debug/netcoreapp3.1/ManagerApp.exe";
+            startInfo.FileName = "../../../../Login/bin/Debug/netcoreapp3.1/Login.exe";
             startInfo.WindowStyle = ProcessWindowStyle.Normal;
             startInfo.Arguments = $"\"{connString_1}\"";
             startInfo.ErrorDialog = true;

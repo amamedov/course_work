@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FGXCTwH+I/6kjRA3BuKMG8TXYkTgit2DiGVN6CPP7m9YCMPyDJfFBsFzGJsXADBzIKtDUC1WIc0BRiDmecbXlg==",
+  "dgSpecHash": "u/nq+ATeEULp5fX7+p7ciG62pFcHpDIVChQI/Zd4cSS/RlF6F50KWrxJGU6brGTiyfvDjlLjR/zcGTX49Ys3sg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\Models\\Models.csproj",
+  "projectFilePath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
