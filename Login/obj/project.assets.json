@@ -1249,6 +1249,38 @@
         "runtime": {
           "bin/placeholder/Models.dll": {}
         }
+      },
+      "StudentApp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/StudentApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/StudentApp.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
+      "TeacherApp/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TeacherApp.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TeacherApp.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
       }
     }
   },
@@ -4965,13 +4997,25 @@
       "type": "project",
       "path": "../Models/Models.csproj",
       "msbuildProject": "../Models/Models.csproj"
+    },
+    "StudentApp/1.0.0": {
+      "type": "project",
+      "path": "../StudentApp/StudentApp.csproj",
+      "msbuildProject": "../StudentApp/StudentApp.csproj"
+    },
+    "TeacherApp/1.0.0": {
+      "type": "project",
+      "path": "../TeacherApp/TeacherApp.csproj",
+      "msbuildProject": "../TeacherApp/TeacherApp.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Core >= 1.0.0",
       "ManagerApp >= 1.0.0",
-      "Models >= 1.0.0"
+      "Models >= 1.0.0",
+      "StudentApp >= 1.0.0",
+      "TeacherApp >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -5012,6 +5056,12 @@
             },
             "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj": {
               "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\Models\\Models.csproj"
+            },
+            "C:\\Users\\Admin\\source\\repos\\course_work\\StudentApp\\StudentApp.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\StudentApp\\StudentApp.csproj"
+            },
+            "C:\\Users\\Admin\\source\\repos\\course_work\\TeacherApp\\TeacherApp.csproj": {
+              "projectPath": "C:\\Users\\Admin\\source\\repos\\course_work\\TeacherApp\\TeacherApp.csproj"
             }
           }
         }

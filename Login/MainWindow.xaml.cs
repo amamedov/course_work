@@ -30,21 +30,24 @@ namespace Login
             InitializeComponent();
             repository = new Repository(connString);
             this.connString = connString;
+            TextBoxName.Focus();
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
             var name = TextBoxName.Text;
-            var surname = TextBoxSurname.Text;
+            var surname = TextBoxSurname.Password;
             if (name=="super" && surname=="super")
             {
                 //Owner App
             }
             else
             {
-                if (repository.Students.Any(x => x.Name==name && x.Surname == surname))
+                if (repository.Teachers.Any(x => x.Name==name && x.Surname == surname))
                 {
-                    //Student App
+                    var teacherApp = new TeacherApp.MainWindow(repository, repository.Teachers.First(x => x.Name == name && x.Surname == surname));
+                    teacherApp.Show();
+                    Close();
                 }
                 else
                 {
@@ -56,7 +59,16 @@ namespace Login
                     }
                     else
                     {
-                        MessageBox.Show("Wrong credentials");
+                        if (repository.Students.Any(x=>x.Name==name && x.Surname == surname))
+                        {
+                            var studentApp = new StudentApp.MainWindow(repository, repository.Students.First(x => x.Name == name && x.Surname == surname));
+                            studentApp.Show();
+                            Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wrong credentials");
+                        }
                     }
                 }
             }

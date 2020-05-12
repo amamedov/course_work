@@ -10,6 +10,8 @@
     <ProjectReference Include="..\Core\Core.csproj" />
     <ProjectReference Include="..\ManagerApp\ManagerApp.csproj" />
     <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\StudentApp\StudentApp.csproj" />
+    <ProjectReference Include="..\TeacherApp\TeacherApp.csproj" />
   </ItemGroup>
 
 </Project>

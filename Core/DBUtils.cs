@@ -191,7 +191,7 @@ namespace Core
                 while (reader.Read())
                 {
                     var course = new Course(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetInt32(6), reader.GetDateTime(3), reader.GetDateTime(4),
-                        reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5));
+                        reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5), reader.GetBoolean(10));
                     courses.Add(course);
                 }
             }

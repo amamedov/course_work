@@ -46,5 +46,9 @@ namespace Models
                 return DTStart.ToShortDateString();
             }
         }
+        public override string ToString()
+        {
+            return $"{Date} {DTStart.ToShortTimeString()} - {DTEnd.ToShortTimeString()} Address: {Room.Building.Address},{Room.Name}";
+        }
     }
 }

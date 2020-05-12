@@ -17,9 +17,10 @@ namespace Models
         public double Price { get; set; }
         public int SubjectID { get; set; }
         public List<Lesson> Lessons { get; set; }
+        public bool IsActive { get; set; }
         public string ToListBox { get { return $"Name: {Name}  Duration: {StartDate.ToShortDateString()} - {EndDate.ToShortDateString()} Price: {Price}"; } }
 
-        public Course(int id, int subjectID, string name, int managerID, DateTime startDate, DateTime endDate, int typeID, bool followedByExam, bool hasRequirements, double price)
+        public Course(int id, int subjectID, string name, int managerID, DateTime startDate, DateTime endDate, int typeID, bool followedByExam, bool hasRequirements, double price, bool isActive)
         {
             ID = id;
             Name = name;
@@ -31,11 +32,13 @@ namespace Models
             FollowedByExam = followedByExam;
             HasRequirements = hasRequirements;
             Price = price;
+            IsActive = isActive;
             Lessons = new List<Lesson>();
         }
         public override string ToString()
         {
             return Name;
         }
+        public string ForStudent { get { return $"{StartDate.ToShortDateString()} - {EndDate.ToShortDateString()}   {Name}  Price:{Price}"; }}
     }
 }

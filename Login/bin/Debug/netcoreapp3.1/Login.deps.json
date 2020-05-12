@@ -10,7 +10,9 @@
         "dependencies": {
           "Core": "1.0.0",
           "ManagerApp": "1.0.0",
-          "Models": "1.0.0"
+          "Models": "1.0.0",
+          "StudentApp": "1.0.0",
+          "TeacherApp": "1.0.0"
         },
         "runtime": {
           "Login.dll": {}
@@ -863,6 +865,22 @@
         "runtime": {
           "Models.dll": {}
         }
+      },
+      "StudentApp/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "runtime": {
+          "StudentApp.dll": {}
+        }
+      },
+      "TeacherApp/1.0.0": {
+        "dependencies": {
+          "Core": "1.0.0"
+        },
+        "runtime": {
+          "TeacherApp.dll": {}
+        }
       }
     }
   },
@@ -1415,6 +1433,16 @@
       "sha512": ""
     },
     "Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "StudentApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TeacherApp/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

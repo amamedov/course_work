@@ -71,3 +71,9 @@ C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\Login.cspr
 C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\Login.dll
 C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\Login.pdb
 C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\Login.genruntimeconfig.cache
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\TeacherApp.exe
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\TeacherApp.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\TeacherApp.pdb
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.exe
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.pdb
