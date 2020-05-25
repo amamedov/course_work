@@ -5,24 +5,123 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" MinHeight="450" MinWidth="800" Width="900" Height="550">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel HorizontalAlignment="Center" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Margin="10 15" >Select course:</TextBlock>
-            <ComboBox x:Name="ComboBoxCourse" FontSize="16" Margin="10 15" SelectionChanged="ComboBoxCourse_SelectionChanged"></ComboBox>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Center" Grid.Row="1">
-            <Button></Button>
-        </StackPanel>
-        <ListBox Grid.Row="1" Grid.Column="1" x:Name="ListBoxLessons" ></ListBox>
-        <Button Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="16" Margin="10 15" Padding="10" x:Name="ExitButton" Click="ExitButton_Click">Exit</Button>
+        <Grid Grid.Column="3" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="80*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" >Select course:</TextBlock>
+            <Grid Grid.Row="1" Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="40*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*" />
+                    <RowDefinition Height="60*" MaxHeight="30" />
+                    <RowDefinition Height="20*" />
+                </Grid.RowDefinitions>
+                <ComboBox HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="ComboBoxCourse" FontSize="16" SelectionChanged="ComboBoxCourse_SelectionChanged"></ComboBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="10*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="80*" />
+                <RowDefinition Height="10*" />
+            </Grid.RowDefinitions>
+            <Button FontSize="16" ToolTip ="Table for all lessons for students` presence" Grid.Column="1" Grid.Row="1" IsEnabled="False" x:Name="ButtonStudentList" Click="ButtonStudentList_Click">Create student list</Button>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="3" Grid.RowSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition MaxHeight="60" Height="15*" />
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock  FontSize="16" FontWeight="Bold" Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Lessons</TextBlock>
+                <ListBox Grid.Row="3" Grid.Column="1"  FontSize="16" x:Name="ListBoxLessons"></ListBox>
+            </Grid>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="90*"/>
+                    <ColumnDefinition Width="5*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition MaxHeight="60" Height="15*" />
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="65*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Past lessons</TextBlock>
+                <ListBox Grid.Row="3" Grid.Column="1" FontSize="16"  x:Name="ListBoxPastLessons"></ListBox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="30*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30*" />
+                <RowDefinition Height="40*" />
+                <RowDefinition Height="30*" />
+            </Grid.RowDefinitions>
+            <Button FontSize="16" Grid.Row="1" Grid.Column="1" x:Name="ExitButton" Click="ExitButton_Click">Exit</Button>
+        </Grid>
     </Grid>
 </Window>

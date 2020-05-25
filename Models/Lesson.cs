@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Dynamic;
 
 namespace Models
 {
@@ -15,8 +16,10 @@ namespace Models
         public Teacher Teacher { get; set; }
         public Course Course { get; set; }
         public Room Room { get; set; }
+        public ExpandoObject Attendance { get; set; }
         public Lesson(int id, int teacherID, int courseID, int roomID, DateTime dtStart, DateTime dtEnd)
         {
+            Attendance = new ExpandoObject();
             ID = id;
             TeacherID = teacherID;
             CourseID = courseID;

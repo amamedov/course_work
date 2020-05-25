@@ -30,6 +30,8 @@ namespace StudentApp
             this.repository = repository;
             this.student = student;
             InitializeComponent();
+            textBlockWelcome.Text = $"Welcome back, {student.Name} {student.Surname}";
+            this.Title = $"{student.Name} {student.Surname}";
             courses = new List<Course>();
             foreach (var item in repository.Contracts)
             {
@@ -57,7 +59,9 @@ namespace StudentApp
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            var result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                Close();
         }
 
         private void ButtonSearchCourse_Click(object sender, RoutedEventArgs e)

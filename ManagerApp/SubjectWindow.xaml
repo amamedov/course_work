@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagerApp"
         mc:Ignorable="d"
-        Title="SubjectWindow" Height="238" Width="445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="Create subject" Height="238" Width="445" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>

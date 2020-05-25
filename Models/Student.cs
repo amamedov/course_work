@@ -12,6 +12,7 @@ namespace Models
         public DateTime DoB { get; set; }
         public string Gender { get; set; }
 
+        public string FullName { get { return Name + " " + Surname; } set { Name = FullName.Split(' ')[0]; Surname = FullName.Split(' ')[1];  } }
 
         public Student(int id, string name, string surname, DateTime doB, string gender)
         {

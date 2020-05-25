@@ -77,3 +77,10 @@ C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\TeacherApp
 C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.exe
 C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.dll
 C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\StudentApp.pdb
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\ClosedXML.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\System.Reactive.dll
+C:\Users\Admin\source\repos\course_work\Login\bin\Debug\netcoreapp3.1\System.Reactive.xml
+C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\SettingsWindow.g.cs
+C:\Users\Admin\source\repos\course_work\Login\obj\Debug\netcoreapp3.1\SettingsWindow.baml

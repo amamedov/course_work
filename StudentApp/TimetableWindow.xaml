@@ -5,8 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
         mc:Ignorable="d"
-        Title="TimetableWindow" Height="450" Width="600">
+        Title="Timetable" MinHeight="450" MinWidth="600" Width="800" Height="500">
     <Grid>
-        <ListBox FontSize="16"  Margin="10 15" x:Name="ListBoxLessons"></ListBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="90*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition MaxHeight="60" Height="15*" />
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  FontSize="16" FontWeight="Bold" Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Lessons</TextBlock>
+            <ListBox Grid.Row="3" Grid.Column="1" FontSize="16" x:Name="ListBoxLessons"></ListBox>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"/>
+                <ColumnDefinition Width="90*"/>
+                <ColumnDefinition Width="5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition MaxHeight="60" Height="15*" />
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="16" FontWeight="Bold" Grid.Row="1"  Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">Past lessons</TextBlock>
+            <ListBox Grid.Row="3" Grid.Column="1" FontSize="16"  x:Name="ListBoxPastLessons"></ListBox>
+        </Grid>
     </Grid>
 </Window>

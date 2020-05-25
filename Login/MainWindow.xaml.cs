@@ -37,41 +37,54 @@ namespace Login
         {
             var name = TextBoxName.Text;
             var surname = TextBoxSurname.Password;
-            if (name=="super" && surname=="super")
+
+            if (repository.Teachers.Any(x => x.Name == name && x.Surname == surname))
             {
-                //Owner App
+                var teacherApp = new TeacherApp.MainWindow(repository, repository.Teachers.First(x => x.Name == name && x.Surname == surname));
+                Hide();
+                teacherApp.Show();
+                TextBoxName.Text = "";
+                TextBoxSurname.Password = "";
+                Close();
             }
             else
             {
-                if (repository.Teachers.Any(x => x.Name==name && x.Surname == surname))
+                if (repository.Managers.Any(x => x.Name == name && x.Surname == surname))
                 {
-                    var teacherApp = new TeacherApp.MainWindow(repository, repository.Teachers.First(x => x.Name == name && x.Surname == surname));
-                    teacherApp.Show();
+                    var managerApp = new cOURSEwoRK.ManagerMainWindow(connString, repository, repository.Managers.First(x => x.Name == name && x.Surname == surname).ID);
+
+                    managerApp.Show();
+                    TextBoxName.Text = "";
+                    TextBoxSurname.Password = "";
                     Close();
                 }
                 else
                 {
-                    if (repository.Managers.Any(x => x.Name == name && x.Surname==surname))
+                    if (repository.Students.Any(x => x.Name == name && x.Surname == surname))
                     {
-                        var managerApp = new cOURSEwoRK.ManagerMainWindow(connString, repository, repository.Managers.First(x => x.Name == name && x.Surname == surname).ID);
-                        managerApp.Show();
+                        var studentApp = new StudentApp.MainWindow(repository, repository.Students.First(x => x.Name == name && x.Surname == surname));
+                        studentApp.Show();
+                        TextBoxName.Text = "";
+                        TextBoxSurname.Password = "";
                         Close();
                     }
                     else
                     {
-                        if (repository.Students.Any(x=>x.Name==name && x.Surname == surname))
-                        {
-                            var studentApp = new StudentApp.MainWindow(repository, repository.Students.First(x => x.Name == name && x.Surname == surname));
-                            studentApp.Show();
-                            Close();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Wrong credentials");
-                        }
+                        MessageBox.Show("Wrong credentials");
                     }
                 }
             }
+        }
+
+        private void TextBoxSurname_GotFocus(object sender, RoutedEventArgs e)
+        {
+            (sender as PasswordBox).SelectAll();
+        }
+
+        private void ButtonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var sWindow = new SettingsWindow(repository);
+            sWindow.ShowDialog();
         }
     }
 }

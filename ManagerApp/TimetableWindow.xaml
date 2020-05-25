@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagerApp"
         mc:Ignorable="d"
-        Title="TimetableWindow" Height="450" Width="930" WindowStartupLocation="CenterScreen">
+        Title="{Binding Path=WindowName}" Height="450" Width="930" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

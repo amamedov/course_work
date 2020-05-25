@@ -62,7 +62,7 @@ namespace Startup
                 }
                 using (var conn = new SqlConnection(connString_1))
                 {
-                    using (StreamReader sr = new StreamReader("../../../Scripts/whole_script.sql"))
+                    using (StreamReader sr = new StreamReader("../../../../Core/Scripts/whole_script.sql"))
                     {
                         var query = sr.ReadToEnd();
                         var server = new Server(new ServerConnection(sqlConnection: conn));

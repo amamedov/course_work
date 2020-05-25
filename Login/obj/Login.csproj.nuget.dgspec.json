@@ -139,6 +139,9 @@
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.WindowsDesktop.App.WPF": {
               "privateAssets": "none"
             }
@@ -369,6 +372,16 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.95.2, )"
+            },
+            "System.Reactive": {
+              "target": "Package",
+              "version": "[4.4.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -382,6 +395,9 @@
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App": {
+              "privateAssets": "none"
             },
             "Microsoft.WindowsDesktop.App.WPF": {
               "privateAssets": "none"

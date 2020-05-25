@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
         mc:Ignorable="d"
-        Title="CoursesWindow" Height="450" Width="600">
+        Title="Search new courses" Height="450" Width="900" MinHeight="450" MinWidth="900">
     <Grid>
-        <ListBox DisplayMemberPath="ForStudent" x:Name="ListBoxCourses" FontSize="16" Margin="10"></ListBox>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="90*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="15*" />
+            <RowDefinition Height="4*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="5*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="10*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="15*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="9*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="9*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="6*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Subject</TextBlock>
+            <ComboBox SelectionChanged="ComboBoxSubject_SelectionChanged" x:Name="ComboBoxSubject" Grid.Row="3" Grid.Column="1" FontSize="16" MaxHeight="30" HorizontalContentAlignment="Center"></ComboBox>
+            <TextBlock Grid.Row="1" Grid.Column="3" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Type</TextBlock>
+            <ComboBox SelectionChanged="ComboBoxType_SelectionChanged" x:Name="ComboBoxType" Grid.Row="3" Grid.Column="3" FontSize="16" MaxHeight="30" HorizontalContentAlignment="Center"></ComboBox>
+            <Button Grid.Column="5" Grid.Row="1" Grid.RowSpan="3" FontSize="16" x:Name="ButtonClear" Click="ButtonClear_Click">Clear</Button>
+        </Grid>
+        <ListBox Grid.Row="3" Grid.Column="1" DisplayMemberPath="ForStudent" x:Name="ListBoxCourses" FontSize="16" Margin="10"></ListBox>
     </Grid>
 </Window>

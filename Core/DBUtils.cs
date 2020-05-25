@@ -287,5 +287,33 @@ namespace Core
             var query = $"insert into Lesson values ({teacherID},{courseID},{roomID}, '{dtStart}','{dtEnd}')";
             return ExecuteNonQuery(query, connString);
         }
+        public static void FillAttendance(Lesson lesson, string connString)
+        {
+            var query = $"select * from Attendance where LessonID={lesson.ID}";
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Connection.Open();
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    (lesson.Attendance as IDictionary<string, object>).Add(reader.GetInt32(0).ToString(), true);
+                }
+            }
+        }
+
+        public static void UpdateAttendance(StudentAttendance studentAttendance, string connString)
+        {
+            foreach (var attendance in studentAttendance.Attendances)
+            {
+                var query = $"Delete from attendance where StudentId={studentAttendance.Student.ID} and LessonID={attendance.Lesson.ID}";
+                ExecuteNonQuery(query, connString);
+                if (attendance.Attended)
+                {
+                    query = $"Insert into Attendance values ({studentAttendance.Student.ID}, {attendance.Lesson.ID})";
+                    ExecuteNonQuery(query, connString);
+                }
+            }
+        }
     }
 }

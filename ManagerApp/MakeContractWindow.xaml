@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagerApp"
         mc:Ignorable="d"
-        Title="Make Contract" Height="309" Width="470" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+        Title="Create contract" Height="309" Width="470" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

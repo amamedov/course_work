@@ -5,20 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="900" MinHeight="400" MinWidth="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <CheckBox IsChecked="False" Checked="CheckBoxPastCourses_Checked" Unchecked="CheckBoxPastCourses_Unchecked" x:Name="CheckBoxPastCourses" Margin="10 15" FontSize="16" VerticalContentAlignment="Center">Include past courses</CheckBox>
-            <Button x:Name="ButtonSearchCourse" FontSize="16" Margin="10 15" Padding="10 5" Click="ButtonSearchCourse_Click">Search course</Button>
-        </StackPanel>
-        <Button x:Name="ButtonClose" Click="ButtonClose_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="16" Margin="10 15" Padding="10 5">Close</Button>
-        <ListBox FontSize="16" Margin="8" MouseDoubleClick="ListBoxCourses_MouseDoubleClick" Grid.Column="1" x:Name="ListBoxCourses"></ListBox>
+        <Border Grid.Column="1" Grid.Row="1" BorderThickness="1" BorderBrush="Black"></Border>
+        <TextBlock x:Name="textBlockWelcome" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"></TextBlock>
+        <TextBlock Grid.Column="3" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="16" FontWeight="Bold"> Your courses</TextBlock>
+        <CheckBox Grid.Row="3" Grid.Column="1" IsChecked="False" Checked="CheckBoxPastCourses_Checked" Unchecked="CheckBoxPastCourses_Unchecked" x:Name="CheckBoxPastCourses" Margin="10 15" FontSize="16" VerticalContentAlignment="Center">Include past courses</CheckBox>
+        <Button Grid.Column="1" Grid.Row="5" x:Name="ButtonSearchCourse" FontSize="16" Margin="10 15" Padding="10 5" Click="ButtonSearchCourse_Click">Search for new course</Button>
+        <Button Grid.Column="1" Grid.Row="7" x:Name="ButtonClose" Click="ButtonClose_Click" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="16" Margin="10 15" Padding="10 5">Close</Button>
+        <ListBox Grid.Row="3" Grid.Column="3" Grid.RowSpan="5" FontSize="16" Margin="8" MouseDoubleClick="ListBoxCourses_MouseDoubleClick" x:Name="ListBoxCourses"></ListBox>
     </Grid>
 </Window>

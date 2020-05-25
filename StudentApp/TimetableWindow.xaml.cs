@@ -25,9 +25,11 @@ namespace StudentApp
         public TimetableWindow(Repository repository, Course course)
         {
             InitializeComponent();
+            this.Title = $"Timetable for {course.Name}";
             this.course = course;
             this.repository = repository;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course);
+            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart > DateTime.Now);
+            ListBoxPastLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart < DateTime.Now);
         }
     }
 }

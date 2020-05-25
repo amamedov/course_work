@@ -11,9 +11,6 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Menu Background="LightGray" Height="auto" VerticalAlignment="Top">
-            <MenuItem Click="MenuItem_Click" BorderThickness="1" BorderBrush="Black" Header="Help" Padding="8 4" FontSize="14"></MenuItem>
-        </Menu>
         <TabControl Grid.Row="1">
             <TabItem Header="Courses" FontSize="14">
                 <Grid>

@@ -22,12 +22,14 @@ namespace ManagerApp
     {
         Repository repository;
         Course course;
-
+        public string WindowName { get; set; }
         public TimetableWindow(Repository repository, Course course)
         {
             InitializeComponent();
             this.repository = repository;
             this.course = course;
+            DataContext = this;
+            WindowName = $"Timetable for {course.Name}";
             ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course.ID == course.ID).OrderBy(x=>x.DTStart).ToList();
         }
 

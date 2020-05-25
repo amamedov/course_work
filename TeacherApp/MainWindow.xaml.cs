@@ -32,19 +32,29 @@ namespace TeacherApp
             this.teacher = teacher;
             ComboBoxCourse.ItemsSource = repository.Courses.Where(x => x.IsActive && repository.Lessons.Where(y => y.Teacher == teacher).Any(z => z.Course == x));
             ComboBoxCourse.SelectedIndex = 0;
-            course = (Course)ComboBoxCourse.SelectedItem;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course);
         }
 
         private void ComboBoxCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             course = (Course)ComboBoxCourse.SelectedItem;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course);
+            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart > DateTime.Now);
+            ListBoxPastLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart < DateTime.Now);
+            ButtonStudentList.IsEnabled = true;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            var result = MessageBox.Show("Are you sure you want to exit?", "Exit", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+                Close();
+        }
+
+        private void ButtonStudentList_Click(object sender, RoutedEventArgs e)
+        {
+            var listWIndow = new StudentListWindow(repository, course, repository.Lessons.Where(x => x.Course == course).ToList());
+            Hide();
+            listWIndow.ShowDialog();
+            Show();
         }
     }
 }
