@@ -105,7 +105,7 @@ namespace Core
                 var reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    var room = new Room(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetBoolean(3), reader.GetBoolean(4), reader.GetInt32(5));
+                    var room = new Room(reader.GetInt32(0), reader.GetString(1), reader.GetInt32(2), reader.GetInt32(3));
                     rooms.Add(room);
                 }
 
@@ -122,7 +122,7 @@ namespace Core
 
         public static int PayForContract(Contract contract, string connString)
         {
-            string query = $"update Contract set IsPaid=1,IsActive=1 where id={contract.ID}";
+            string query = $"update Contract set IsPaid=1 where id={contract.ID}";
             return ExecuteNonQuery(query, connString);
         }
 
