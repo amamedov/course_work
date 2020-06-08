@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherApp"
         mc:Ignorable="d"
-        Title="MainWindow" MinHeight="450" MinWidth="800" Width="900" Height="550">
+        Title="TeacherApp" WindowStartupLocation="CenterScreen" MinHeight="450" MinWidth="800" Width="900" Height="550">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
     </Window.Resources>

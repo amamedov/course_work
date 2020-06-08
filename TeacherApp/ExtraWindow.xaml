@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherApp"
         mc:Ignorable="d"
-        Title="Add extra material" Height="500" Width="800" ResizeMode="NoResize">
+        Title="Add extra material" WindowStartupLocation="CenterScreen" Height="500" Width="800" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />

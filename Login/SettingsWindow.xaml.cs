@@ -51,7 +51,7 @@ namespace Login
                 connection.Close();
                 if ((bool)CreateDB.IsChecked)
                 {
-                    using (connection)
+                   using (connection)
                     {
                         var command = new SqlCommand("create database [Course_work_Mamedov];", connection);
                         command.Connection.Open();
@@ -68,6 +68,7 @@ namespace Login
                     }
                 }
                 repository.ConnString = connString_1;
+                Close();
             }
             catch (Exception ex)
             {

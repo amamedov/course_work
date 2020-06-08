@@ -41,22 +41,16 @@ namespace ManagerApp
         {
             try
             {
-                int result = DBUtils.AddContract(TextBoxName.Text, TextBoxSurname.Text, (ComboBoxCourse.SelectedItem as Course).ID, managerID, repository.ConnString);
-                if (result == 1)
-                {
-                    MessageBox.Show("Contract added to the database");
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("Something went wrong, contract has not been made, try again");
-                    Close();
-                }
+                DBUtils.AddContract(TextBoxName.Text, TextBoxSurname.Text, (ComboBoxCourse.SelectedItem as Course).ID, managerID, repository.ConnString);
+
+                MessageBox.Show("Contract added to the database");
+                repository.UpdateContracts();
+                Close();
             }
-            catch (Exception)
+            catch (Exception x)
             {
 
-                MessageBox.Show("Student already has contract for this course");
+                MessageBox.Show(x.Message);
             }
 
         }

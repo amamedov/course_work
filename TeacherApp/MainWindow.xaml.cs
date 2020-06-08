@@ -52,9 +52,7 @@ namespace TeacherApp
         private void ButtonStudentList_Click(object sender, RoutedEventArgs e)
         {
             var listWIndow = new StudentListWindow(repository, course, repository.Lessons.Where(x => x.Course == course).ToList());
-            Hide();
             listWIndow.ShowDialog();
-            Show();
         }
 
         private void Button_Extra_Click(object sender, RoutedEventArgs e)

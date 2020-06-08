@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ManagerApp"
         mc:Ignorable="d"
-        Title="Add student" Height="450" Width="600" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+        Title="Add student" Height="450" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

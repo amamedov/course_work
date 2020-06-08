@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TeacherApp"
         mc:Ignorable="d"
-        Title="PathWindow" WindowStartupLocation="CenterOwner" Height="200" Width="700" ResizeMode="NoResize">
+        Title="PathWindow" WindowStartupLocation="CenterScreen" Height="200" Width="700" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>

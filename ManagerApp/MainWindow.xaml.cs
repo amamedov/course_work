@@ -3,6 +3,7 @@ using ManagerApp;
 using Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Printing;
 using System.Text;
@@ -32,7 +33,7 @@ namespace cOURSEwoRK
         {
             this.repository.UpdateCourses();
             this.repository.UpdateContracts();
-            ListBoxContracts.ItemsSource = repository.Contracts;
+            ListBoxContracts.ItemsSource =  repository.Contracts;
             ListBoxCourses.ItemsSource = repository.Courses;
         }
         public ManagerMainWindow(string connString, Repository repository, int managerID)
@@ -40,7 +41,7 @@ namespace cOURSEwoRK
             InitializeComponent();
             this.connString = connString;
             this.repository = new Repository(connString);
-            ListBoxContracts.ItemsSource = repository.Contracts;
+            ListBoxContracts.ItemsSource = new ObservableCollection<Contract>( repository.Contracts);
             ListBoxCourses.ItemsSource = repository.Courses;
             ComboBoxSubjectFilter.ItemsSource = repository.Subjects;
             ComboBoxStudentFilter.ItemsSource = repository.Students;
@@ -67,9 +68,7 @@ namespace cOURSEwoRK
         private void ButtonAddContract_Click(object sender, RoutedEventArgs e)
         {
             var contractWindow = new MakeContractWindow(repository, managerID);
-            Hide();
             contractWindow.ShowDialog();
-            Show();
         }
 
         private void ButtonDeleteContract_Click(object sender, RoutedEventArgs e)
@@ -152,9 +151,7 @@ namespace cOURSEwoRK
         private void ButtonAddCourse_Click(object sender, RoutedEventArgs e)
         {
             var courseWindow = new MakeCourse(managerID, connString, repository);
-            Hide();
             courseWindow.ShowDialog();
-            Show();
             repository.UpdateCourses();
             ComboBoxCourseFilter.ItemsSource = repository.Courses;
         }
@@ -169,9 +166,7 @@ namespace cOURSEwoRK
         private void ButtonTimetable_Click(object sender, RoutedEventArgs e)
         {
             var timetableWindow = new TimetableWindow(repository, (Course)ListBoxCourses.SelectedItem);
-            Hide();
             timetableWindow.ShowDialog();
-            Show();
         }
         private void ButtonDeleteCourse_Click(object sender, RoutedEventArgs e)
         {
@@ -184,9 +179,7 @@ namespace cOURSEwoRK
         private void ButtonAddSubject_Click(object sender, RoutedEventArgs e)
         {
             var subjectWindow = new SubjectWindow(connString);
-            Hide();
             subjectWindow.ShowDialog();
-            Show();
             repository.UpdateSubjects();
             ComboBoxSubjectFilter.ItemsSource = repository.Subjects;
         }

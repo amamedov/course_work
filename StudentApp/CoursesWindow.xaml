@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentApp"
         mc:Ignorable="d"
-        Title="Search new courses" Height="450" Width="900" MinHeight="450" MinWidth="900">
+        Title="Search new courses" Height="450" WindowStartupLocation="CenterScreen" Width="900" MinHeight="450" MinWidth="900">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*" />
