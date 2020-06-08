@@ -42,6 +42,14 @@
             <ComboBox SelectionChanged="ComboBoxType_SelectionChanged" x:Name="ComboBoxType" Grid.Row="3" Grid.Column="3" FontSize="16" MaxHeight="30" HorizontalContentAlignment="Center"></ComboBox>
             <Button Grid.Column="5" Grid.Row="1" Grid.RowSpan="3" FontSize="16" x:Name="ButtonClear" Click="ButtonClear_Click">Clear</Button>
         </Grid>
-        <ListBox Grid.Row="3" Grid.Column="1" DisplayMemberPath="ForStudent" x:Name="ListBoxCourses" FontSize="16" Margin="10"></ListBox>
+        <DataGrid Grid.Row="3" AutoGenerateColumns="False" Grid.Column="1"  x:Name="ListBoxCourses" FontSize="16" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Start date" Binding="{Binding Path=ShortStart}" IsReadOnly="True"/>
+                <DataGridTextColumn IsReadOnly="True" Header="End date" Binding="{Binding Path=ShortEnd}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Price" Binding="{Binding Path=Price}"/>
+                <DataGridCheckBoxColumn IsReadOnly="True" Header="Exam" Binding="{Binding Path=FollowedByExam}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

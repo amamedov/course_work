@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.CompilerServices;
+using Models;
 
 namespace ManagerApp
 {
@@ -21,12 +22,14 @@ namespace ManagerApp
     public partial class MakeContractWindow : Window
     {
         int managerID;
-        string connString;
-        public MakeContractWindow(int managerID, string connString)
+        Repository repository;
+        public MakeContractWindow(Repository repository, int managerID)
         {
             InitializeComponent();
-            this.connString = connString;
+            this.repository = repository;
             this.managerID = managerID;
+            ComboBoxCourse.ItemsSource = repository.Courses;
+            ComboBoxCourse.SelectedIndex = -1;
         }
 
         private void ButtonCancel_Click(object sender, RoutedEventArgs e)
@@ -36,17 +39,26 @@ namespace ManagerApp
 
         private void ButtonMake_Click(object sender, RoutedEventArgs e)
         {
-            int result = DBUtils.AddContract(TextBoxName.Text, TextBoxSurname.Text, TextBoxCourse.Text, managerID, connString);
-            if (result == 1)
+            try
             {
-                MessageBox.Show("Contract added to the database");
-                Close();
+                int result = DBUtils.AddContract(TextBoxName.Text, TextBoxSurname.Text, (ComboBoxCourse.SelectedItem as Course).ID, managerID, repository.ConnString);
+                if (result == 1)
+                {
+                    MessageBox.Show("Contract added to the database");
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Something went wrong, contract has not been made, try again");
+                    Close();
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Something went wrong, contract has not been made, try again");
-                Close();
+
+                MessageBox.Show("Student already has contract for this course");
             }
+
         }
     }
 }

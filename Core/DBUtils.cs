@@ -25,11 +25,10 @@ namespace Core
             }
         }
 
-        public static int AddContract(string name, string surname, string course, int managerID, string connString)
+        public static int AddContract(string name, string surname, int course, int managerID, string connString)
         {
             string query = "declare @StudentID int = (select top 1 ID from Student where name='" + name + "' and surname='" + surname + "');" +
-                "declare @CourseID int = (select top 1 ID from Course where name='" + course + "');" +
-                "exec MakeContract @StudentID, @CourseID,  @ManagerID=" + managerID.ToString();
+                $"exec MakeContract @StudentID, @CourseId={course} ,  @ManagerID=" + managerID.ToString();
             return ExecuteNonQuery(query, connString);
         }
 
@@ -191,7 +190,7 @@ namespace Core
                 while (reader.Read())
                 {
                     var course = new Course(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetInt32(6), reader.GetDateTime(3), reader.GetDateTime(4),
-                        reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5), reader.GetBoolean(10));
+                        reader.GetInt32(9), reader.GetBoolean(7), reader.GetBoolean(8), reader.GetDouble(5));
                     courses.Add(course);
                 }
             }
@@ -204,7 +203,7 @@ namespace Core
             string query = $"declare @typeID int = (select top 1 id from TypeOfCourse where name='{type}');" +
                 $"declare @subjectID int = (select top 1 id from Subject where name='{subject}');" +
                 $"insert into Course values ('{name}', @subjectID, '{startDate}', '{endDate}', {price}, " +
-                $"{managerID}, {(followedByExam ? 1 : 0)}, {(hasRequirements ? 1 : 0)}, @typeID, 1)";
+                $"{managerID}, {(followedByExam ? 1 : 0)}, {(hasRequirements ? 1 : 0)}, @typeID)";
             return ExecuteNonQuery(query, connString);
         }
 
@@ -220,7 +219,7 @@ namespace Core
             string query = $"declare @typeID int = (select top 1 id from TypeOfCourse where name='{type}');" +
                 $"declare @subjectID int = (select top 1 id from Subject where name='{subject}');" +
                 $"update Course set name='{name}', subjectID=@subjectID, StartDate='{startDate}', EndDate='{endDate}', Price = {price}, " +
-                $"ManagerID={managerID}, FollowedByExam={(followedByExam ? 1 : 0)}, HasRequirements={(hasRequirements ? 1 : 0)}, TypeOfCourseID=@typeID, IsActive = 1" +
+                $"ManagerID={managerID}, FollowedByExam={(followedByExam ? 1 : 0)}, HasRequirements={(hasRequirements ? 1 : 0)}, TypeOfCourseID=@typeID" +
                 $"where ID={course.ID}";
             return ExecuteNonQuery(query, connString);
         }
@@ -314,6 +313,26 @@ namespace Core
                     ExecuteNonQuery(query, connString);
                 }
             }
+        }
+        public static int AddVideo(int length, string description, string connString, int lessonID)
+        {
+            var query = $"insert into Video values ({lessonID},{length},'{description}')";
+            return ExecuteNonQuery(query, connString);
+        }
+        public static int AddLecture(string name, int number, string description, string connString, int lessonID)
+        {
+            var query = $"insert into Lecture values ({lessonID},'{name}',{number},'{description}')";
+            return ExecuteNonQuery(query, connString);
+        }
+        public static int AddPrinted(string name, int number, string description, string connString, int lessonID)
+        {
+            var query = $"insert into PrintedMaterial values ({lessonID},'{name}',{number},'{description}')";
+            return ExecuteNonQuery(query, connString);
+        }
+        public static int AddWebsite(string name, string url, string description, string connString, int lessonID)
+        {
+            var query = $"insert into WebSite values ({lessonID},'{name}','{url}','{description}')";
+            return ExecuteNonQuery(query, connString);
         }
     }
 }

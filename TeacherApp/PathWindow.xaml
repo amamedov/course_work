@@ -18,14 +18,7 @@
         </Grid.RowDefinitions>
         <Button x:Name="ButtonSubmit" Grid.ColumnSpan="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="10 5" Click="ButtonSubmit_Click">Submit</Button>
         <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">Output path:</TextBlock>
-        <TextBox MouseDown="PathBox_MouseDoubleClick" x:Name="PathBox" FontSize="16" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0 0 10 0"></TextBox>
-        <Grid Grid.Column="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Button Name="ButtonCopy" FontSize="16" Grid.Column="0" VerticalAlignment="Center" Padding="10 5" HorizontalAlignment="Center" Click="ButtonCopy_Click">Copy</Button>
-            <Button Grid.Column="1" FontSize="16" VerticalAlignment="Center" Padding="10 5" HorizontalAlignment="Center" Click="Button_Click" >Paste</Button>
-        </Grid>
+        <TextBox IsReadOnly="True"  x:Name="PathBox" FontSize="16" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="0 0 10 0">Choose folder</TextBox>
+        <Button Grid.Column="2"  Click="Button_Click_1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Padding="10 5">Browse</Button>
     </Grid>
 </Window>

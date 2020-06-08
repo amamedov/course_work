@@ -9,7 +9,7 @@ namespace Models
         public int ID { get; set; }
         public string Name { get; set; }
         public int ManagerID { get; set; }
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get ; set; }
         public DateTime EndDate { get; set; }
         public int TypeID { get; set; }
         public bool FollowedByExam { get; set; }
@@ -17,10 +17,11 @@ namespace Models
         public double Price { get; set; }
         public int SubjectID { get; set; }
         public List<Lesson> Lessons { get; set; }
-        public bool IsActive { get; set; }
-        public string ToListBox { get { return $"Name: {Name}  Duration: {StartDate.ToShortDateString()} - {EndDate.ToShortDateString()} Price: {Price}"; } }
+        public bool IsActive { get { return EndDate >= DateTime.Now; } }
+        public string ShortStart { get { return StartDate.ToShortDateString(); } }
+        public string ShortEnd { get { return EndDate.ToShortDateString(); } }
 
-        public Course(int id, int subjectID, string name, int managerID, DateTime startDate, DateTime endDate, int typeID, bool followedByExam, bool hasRequirements, double price, bool isActive)
+        public Course(int id, int subjectID, string name, int managerID, DateTime startDate, DateTime endDate, int typeID, bool followedByExam, bool hasRequirements, double price)
         {
             ID = id;
             Name = name;
@@ -32,13 +33,12 @@ namespace Models
             FollowedByExam = followedByExam;
             HasRequirements = hasRequirements;
             Price = price;
-            IsActive = isActive;
             Lessons = new List<Lesson>();
         }
         public override string ToString()
         {
-            return Name;
+            return Name+"  "+StartDate.ToShortDateString()+"-"+EndDate.ToShortDateString();
         }
-        public string ForStudent { get { return $"{StartDate.ToShortDateString()} - {EndDate.ToShortDateString()}   {Name}  Price:{Price}"; }}
+        public string GridView { get { return $"{Name} {StartDate.ToShortDateString()} - {EndDate.ToShortDateString()}"; }}
     }
 }

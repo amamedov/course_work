@@ -12,12 +12,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <TextBlock FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Center" Grid.ColumnSpan="2" >Enter student information</TextBlock>
         <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10 15" Grid.Row="1">Name:</TextBlock>

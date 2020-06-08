@@ -25,7 +25,8 @@ namespace Models
 
         public override string ToString()
         {
-            return $"{Name} {Surname}";
+            return $"{Name} {Surname} Date of birth:{DoB} Gender:{Gender}";
         }
+        public string ShortDoB { get { return DoB.ToShortDateString(); } }
     }
 }

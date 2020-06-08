@@ -30,15 +30,15 @@ namespace TeacherApp
             InitializeComponent();
             this.repository = repository;
             this.teacher = teacher;
-            ComboBoxCourse.ItemsSource = repository.Courses.Where(x => x.IsActive && repository.Lessons.Where(y => y.Teacher == teacher).Any(z => z.Course == x));
+            ComboBoxCourse.ItemsSource = repository.Courses.Where(x => repository.Lessons.Where(y => y.Teacher == teacher).Any(z => z.Course == x));
             ComboBoxCourse.SelectedIndex = 0;
         }
 
         private void ComboBoxCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             course = (Course)ComboBoxCourse.SelectedItem;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart > DateTime.Now);
-            ListBoxPastLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.DTStart < DateTime.Now);
+            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course&&x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
+            ListBoxPastLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart < DateTime.Now);
             ButtonStudentList.IsEnabled = true;
         }
 
@@ -55,6 +55,22 @@ namespace TeacherApp
             Hide();
             listWIndow.ShowDialog();
             Show();
+        }
+
+        private void Button_Extra_Click(object sender, RoutedEventArgs e)
+        {
+            var ew = new ExtraWindow(repository, ListBoxLessons.SelectedItem as Lesson);
+            ew.Show();
+        }
+
+        private void ListBoxLessons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in (sender as ListBox).Items)
+            {
+                (item as Lesson).VisibleForExtra = false;
+            }
+            ((sender as ListBox).SelectedItem as Lesson).VisibleForExtra = true;
+            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
         }
     }
 }

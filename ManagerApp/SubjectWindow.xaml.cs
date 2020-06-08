@@ -41,12 +41,12 @@ namespace ManagerApp
                 }
                 else
                 {
-                    MessageBox.Show("That course already exists");
+                    MessageBox.Show("That subject already exists");
                 }
             }
             catch
             {
-                MessageBox.Show("Something went wrong. Try again");
+                MessageBox.Show("That subject already exists");
             }
         }
     }

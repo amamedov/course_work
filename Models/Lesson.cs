@@ -17,6 +17,7 @@ namespace Models
         public Course Course { get; set; }
         public Room Room { get; set; }
         public ExpandoObject Attendance { get; set; }
+        public bool VisibleForExtra { get; set; }
         public Lesson(int id, int teacherID, int courseID, int roomID, DateTime dtStart, DateTime dtEnd)
         {
             Attendance = new ExpandoObject();
@@ -26,12 +27,13 @@ namespace Models
             RoomID = roomID;
             DTStart = dtStart;
             DTEnd = dtEnd;
+            VisibleForExtra = false;
         }
         public int Duration
         {
             get
             {
-                return (DTEnd - DTStart).Minutes;
+                return (DTEnd - DTStart).Minutes + (DTEnd - DTStart).Hours*60;
             }
         }
 
@@ -53,5 +55,6 @@ namespace Models
         {
             return $"{Date} {DTStart.ToShortTimeString()} - {DTEnd.ToShortTimeString()} Address: {Room.Building.Address},{Room.Name}";
         }
+        public string TeacherTimetable { get {return $"{Date} {DTStart.ToShortTimeString()} - {DTEnd.ToShortTimeString()} Address: {Room.Building.Address},{Room.Name}"; } }
     }
 }

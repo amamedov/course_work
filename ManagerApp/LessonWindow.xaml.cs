@@ -24,26 +24,32 @@ namespace ManagerApp
         Course course;
         Lesson lesson = null;
         bool isUpdate = false;
+        List<string> hours;
+        List<string> minutes;
 
         public LessonWindow(Repository repository, Course course, Lesson lesson = null)
         {
             this.repository = repository;
             this.course = course;
-            var hours = new List<int>();
+            hours = new List<string>();
             for (int i = 0; i < 24; i++)
             {
-                hours.Add(i);
+                hours.Add(i.ToString().Length != 1 ? i.ToString() : $"0{i}");
             }
-            var minutes = new List<int>();
+            minutes = new List<string>();
             for (int i = 0; i < 60; i++)
             {
-                minutes.Add(i);
+                minutes.Add(i.ToString().Length != 1 ? i.ToString() : $"0{i}");
             }
             InitializeComponent();
             ComboBoxEndHour.ItemsSource = hours;
+            ComboBoxEndHour.SelectedIndex = -1;
             ComboBoxStartHour.ItemsSource = hours;
+            ComboBoxStartHour.SelectedIndex = -1;
             ComboBoxEndMinute.ItemsSource = minutes;
+            ComboBoxEndMinute.SelectedIndex = -1;
             ComboBoxStartMinute.ItemsSource = minutes;
+            ComboBoxStartMinute.SelectedIndex = -1;
             ComboBoxTeacher.ItemsSource = repository.Teachers;
             ComboBoxRoom.ItemsSource = repository.Rooms;
             if (lesson != null)
@@ -53,10 +59,10 @@ namespace ManagerApp
                 ComboBoxRoom.SelectedItem = ComboBoxRoom.Items.Cast<Room>().First(x => x.ID == lesson.RoomID);
                 ComboBoxTeacher.SelectedItem = ComboBoxTeacher.Items.Cast<Teacher>().First(x => x.ID == lesson.TeacherID);
                 DatePicker.SelectedDate = lesson.DTStart.Date;
-                ComboBoxStartHour.SelectedItem = ComboBoxStartHour.Items.Cast<int>().First(x => x == lesson.DTStart.Hour);
-                ComboBoxStartMinute.SelectedItem = ComboBoxStartMinute.Items.Cast<int>().First(x => x ==lesson.DTStart.Minute);
-                ComboBoxEndHour.SelectedItem = ComboBoxEndHour.Items.Cast<int>().First(x => x == lesson.DTEnd.Hour);
-                ComboBoxEndMinute.SelectedItem = ComboBoxEndMinute.Items.Cast<int>().First(x => x == lesson.DTEnd.Minute);
+                ComboBoxStartHour.SelectedItem = ComboBoxStartHour.Items.Cast<string>().First(x => int.Parse(x) == lesson.DTStart.Hour);
+                ComboBoxStartMinute.SelectedItem = ComboBoxStartMinute.Items.Cast<string>().First(x => int.Parse(x) == lesson.DTStart.Minute);
+                ComboBoxEndHour.SelectedItem = ComboBoxEndHour.Items.Cast<string>().First(x => int.Parse(x) == lesson.DTEnd.Hour);
+                ComboBoxEndMinute.SelectedItem = ComboBoxEndMinute.Items.Cast<string>().First(x => int.Parse(x) == lesson.DTEnd.Minute);
             }
         }
 
@@ -67,7 +73,7 @@ namespace ManagerApp
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-           try
+            try
             {
                 var teacherID = ((Teacher)ComboBoxTeacher.SelectedItem).ID;
                 var roomID = ((Room)ComboBoxRoom.SelectedItem).ID;
@@ -78,27 +84,41 @@ namespace ManagerApp
                 dtEnd = dtEnd.AddMinutes(Convert.ToDouble(ComboBoxEndMinute.SelectedItem));
                 dtStart = dtStart.AddHours(Convert.ToDouble(ComboBoxStartHour.SelectedItem));
                 dtStart = dtStart.AddMinutes(Convert.ToDouble(ComboBoxStartMinute.SelectedItem));
-                if  (!isUpdate)
+                if (dtEnd < course.EndDate || dtStart < course.StartDate)
                 {
-                    if (DBUtils.AddLesson(teacherID, courseID, roomID, dtStart, dtEnd, repository.ConnString) == 1)
+                    if (dtStart < dtEnd)
                     {
-                        Close();
+                        if (!isUpdate)
+                        {
+                            if (DBUtils.AddLesson(teacherID, courseID, roomID, dtStart, dtEnd, repository.ConnString) == 1)
+                            {
+                                Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Enter correct information");
+                            }
+                        }
+                        else
+                        {
+                            if (DBUtils.UpdateLesson(lesson.ID, teacherID, roomID, dtStart, dtEnd, repository.ConnString) == 1)
+                            {
+                                Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Enter correct information");
+                            }
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Enter correct information");
+                        MessageBox.Show("Incorrect timespan");
                     }
                 }
                 else
                 {
-                    if (DBUtils.UpdateLesson(lesson.ID, teacherID, roomID,dtStart, dtEnd, repository.ConnString) == 1)
-                    {
-                        Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Enter correct information");
-                    }
+                    MessageBox.Show("Incorrect date");
                 }
             }
             catch

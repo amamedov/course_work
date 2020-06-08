@@ -38,7 +38,6 @@ namespace TeacherApp
             Unsaved = false;
             this.repository = repository;
             this.course = course;
-            repository.OutputPath = Directory.GetCurrentDirectory() + $"\\Student lists\\{course.Name}-{course.StartDate.ToShortDateString()}-{course.EndDate.ToShortDateString()}.xlsx";
             var rows = new ObservableCollection<StudentAttendance>();
             foreach (var student in repository.Students.Where(x => repository.Contracts.Where(y => y.StudentID == x.ID).Any(z => z.CourseID == course.ID)))
             {
@@ -67,7 +66,7 @@ namespace TeacherApp
 
         private void ButtonChangePath_Click(object sender, RoutedEventArgs e)
         {
-            var pathWindow = new PathWindow(repository, course);
+            var pathWindow = new PathWindow(repository);
             pathWindow.ShowDialog();
         }
 
@@ -75,12 +74,12 @@ namespace TeacherApp
         {
             ButtonSave.IsEnabled = false;
             StudentList.IsReadOnly = true;
-            await Task.Run(() => ExportToXL());
+            await Task.Run(() => ExportToXL(course));
             StudentList.IsReadOnly = false;
             ButtonSave.IsEnabled = true;
         }
 
-        private void ExportToXL()
+        private void ExportToXL(Course course)
         {
             var dataTable = new DataTable($"{course.Name} {course.StartDate.ToShortDateString()} - {course.EndDate.ToShortDateString()}");
             dataTable.Columns.Add(new DataColumn("Student"));
@@ -111,7 +110,8 @@ namespace TeacherApp
                 }
                 try
                 {
-                    workbook.SaveAs(repository.OutputPath);
+                    workbook.SaveAs($"{repository.OutputPath}\\{course.Name}_{course.StartDate.Day}_{course.StartDate.Month}_{course.StartDate.Year}-{course.EndDate.Day}_{course.EndDate.Month}_{course.EndDate.Year}.xlsx");
+                    MessageBox.Show($"Saved to '{repository.OutputPath}\\{course.Name}_{course.StartDate.Day}_{course.StartDate.Month}_{course.StartDate.Year}-{course.EndDate.Day}_{course.EndDate.Month}_{course.EndDate.Year}.xlsx'");
                 }
                 catch (Exception exc)
                 {

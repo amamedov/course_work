@@ -29,6 +29,7 @@ namespace ManagerApp
             genders.Add("Male");
             genders.Add("Female");
             ComboBoxGender.ItemsSource = genders;
+            ComboBoxGender.SelectedIndex = -1;
             if (student != null)
             {
                 this.student = student;
@@ -46,34 +47,50 @@ namespace ManagerApp
 
         private void ButtonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (DatePickerDOB.SelectedDate != null && TextBoxName.Text.Length > 0 && TextBoxSurname.Text.Length > 0 && ComboBoxGender.SelectedIndex !=-1)
             {
-                if(student == null)
-                if (DBUtils.AddStudent(TextBoxName.Text, TextBoxSurname.Text, (DateTime)DatePickerDOB.SelectedDate, (string)ComboBoxGender.SelectedItem, connString) == 1)
+
+
+                if (((DateTime)DatePickerDOB.SelectedDate).Date < DateTime.Now.Date)
                 {
-                    MessageBox.Show("Changes saved to database");
-                    Close();
+                    try
+                    {
+                        if (student == null)
+                            if (DBUtils.AddStudent(TextBoxName.Text, TextBoxSurname.Text, (DateTime)DatePickerDOB.SelectedDate, (string)ComboBoxGender.SelectedItem, connString) == 1)
+                            {
+                                MessageBox.Show("Changes saved to database");
+                                Close();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Fill all the fields correctly");
+                            }
+                        else
+                        {
+                            student.Name = TextBoxName.Text;
+                            student.Surname = TextBoxSurname.Text;
+                            student.DoB = (DateTime)DatePickerDOB.SelectedDate;
+                            student.Gender = (string)ComboBoxGender.SelectedItem;
+                            DBUtils.UpdateStudent(student, connString);
+                            MessageBox.Show("Changes saved to database");
+                            Close();
+                        }
+
+
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("This student`s account already exists.");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Fill all the fields correctly");
+                    MessageBox.Show("Incorrect date of birth");
                 }
-                else
-                {
-                    student.Name = TextBoxName.Text;
-                    student.Surname = TextBoxSurname.Text;
-                    student.DoB =(DateTime) DatePickerDOB.SelectedDate;
-                    student.Gender =(string) ComboBoxGender.SelectedItem;
-                    DBUtils.UpdateStudent(student, connString);
-                    MessageBox.Show("Changes saved to database");
-                    Close();
-                }
-
-
             }
-            catch (Exception)
+            else
             {
-                MessageBox.Show("Fill all the fields correctly");
+                MessageBox.Show("Fill all fields");
             }
         }
     }

@@ -21,7 +21,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.ColumnSpan="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 20">Enter course info</TextBlock>
+        <TextBlock Grid.ColumnSpan="2" x:Name="head" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 20">Enter course info</TextBlock>
         <TextBlock Grid.Row="1" Margin="10 15" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center">Course name:</TextBlock>
         <TextBox Grid.Row="1" x:Name="TextBoxName" Margin="10 15 20 15" Grid.Column="1" HorizontalAlignment="Stretch" FontSize="16" VerticalAlignment="Center"></TextBox>
         <TextBlock Grid.Row="2" Margin="10 15" HorizontalAlignment="Center" FontSize="16" VerticalAlignment="Center">Subject:</TextBlock>

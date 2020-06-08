@@ -46,9 +46,6 @@ namespace cOURSEwoRK
             ComboBoxStudentFilter.ItemsSource = repository.Students;
             ComboBoxCourseFilter.ItemsSource = repository.Courses;
             ListBoxStudents.ItemsSource = repository.Students;
-            ButtonChangeCourse.IsEnabled = false;
-            ButtonDeleteCourse.IsEnabled = false;
-            ButtonDeleteContract.IsEnabled = false;
             ButtonMarkAsPaid.IsEnabled = false;
             ButtonTimetable.IsEnabled = false;
 
@@ -69,11 +66,10 @@ namespace cOURSEwoRK
         #region Contracts
         private void ButtonAddContract_Click(object sender, RoutedEventArgs e)
         {
-            var contractWindow = new MakeContractWindow(managerID, connString);
+            var contractWindow = new MakeContractWindow(repository, managerID);
             Hide();
             contractWindow.ShowDialog();
             Show();
-            TextBlockContractInfo.Text = "Please refresh info";
         }
 
         private void ButtonDeleteContract_Click(object sender, RoutedEventArgs e)
@@ -81,21 +77,16 @@ namespace cOURSEwoRK
             Contract contract = (Contract)ListBoxContracts.SelectedItem;
             DBUtils.DeleteContract(contract, connString);
             MessageBox.Show("Contract deleted");
-            TextBlockContractInfo.Text = "Please refresh info";
         }
 
         private void ListBoxContracts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ButtonDeleteContract.IsEnabled = true;
             ButtonMarkAsPaid.IsEnabled = true;
             if (ListBoxContracts.SelectedItems.Count > 1)
             {
                 ListBoxContracts.SelectedItems.RemoveAt(0);
             }
             var selectedContract = (Contract)ListBoxContracts.SelectedItem;
-            if (selectedContract != null)
-                TextBlockContractInfo.Text = $"Student: {selectedContract.Student}  Course: {selectedContract.Course}\nPaid: {selectedContract.IsPaid}" +
-                    $"  Active:{selectedContract.IsActive}\nCreated: {selectedContract.DateTimeMade}";
         }
 
         private void ButtonMarkAsPaid_Click(object sender, RoutedEventArgs e)
@@ -116,39 +107,45 @@ namespace cOURSEwoRK
         {
             repository.UpdateContracts();
             ListBoxContracts.ItemsSource = repository.Contracts;
-            ButtonDeleteContract.IsEnabled = false;
             ButtonMarkAsPaid.IsEnabled = false;
-            TextBlockContractInfo.Text = "Select contract to view info";
         }
         private void ComboBoxStudentFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxStudentFilter.SelectedItem != null)
+            if (ComboBoxStudentFilter.SelectedIndex != -1)
             {
-                ListBoxContracts.ItemsSource = repository.Contracts;
-                ListBoxContracts.ItemsSource = ComboBoxCourseFilter.SelectedItem == null ?
-                    ListBoxContracts.ItemsSource.Cast<Contract>().ToList().Where(x => x.Student == (Student)ComboBoxStudentFilter.SelectedItem) :
-                    ListBoxContracts.ItemsSource.Cast<Contract>().ToList().Where(x => x.Student == (Student)ComboBoxStudentFilter.SelectedItem && x.Course == (Course)ComboBoxCourseFilter.SelectedItem);
+                if (ComboBoxCourseFilter.SelectedIndex == -1)
+                {
+                    ListBoxContracts.ItemsSource = repository.Contracts.Where(x => x.Student.ID == (ComboBoxStudentFilter.SelectedItem as Student).ID);
+                }
+                else
+                {
+                    ListBoxContracts.ItemsSource = repository.Contracts.Where(x => x.Student.ID == (ComboBoxStudentFilter.SelectedItem as Student).ID && x.Course.ID == (ComboBoxCourseFilter.SelectedItem as Course).ID);
+                }
             }
         }
 
         private void ClearButton_1_Click(object sender, RoutedEventArgs e)
         {
-            this.repository.UpdateContracts();
+            ComboBoxStudentFilter.SelectedIndex = -1;
+            ComboBoxCourseFilter.SelectedIndex = -1;
             ListBoxContracts.ItemsSource = repository.Contracts;
-            ComboBoxStudentFilter.SelectedItem = null;
-            ComboBoxCourseFilter.SelectedItem = null;
         }
 
         private void ComboBoxCourseFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (ComboBoxCourseFilter.SelectedItem != null)
+            if (ComboBoxCourseFilter.SelectedIndex != -1)
             {
-                ListBoxContracts.ItemsSource = repository.Contracts;
-                ListBoxContracts.ItemsSource = ComboBoxStudentFilter.SelectedItem == null ?
-                    ListBoxContracts.ItemsSource.Cast<Contract>().ToList().Where(x => x.Course == (Course)ComboBoxCourseFilter.SelectedItem) :
-                    ListBoxContracts.ItemsSource.Cast<Contract>().ToList().Where(x => x.Course == (Course)ComboBoxCourseFilter.SelectedItem && x.Student == (Student)ComboBoxStudentFilter.SelectedItem);
+                if (ComboBoxStudentFilter.SelectedIndex == -1)
+                {
+                    ListBoxContracts.ItemsSource = repository.Contracts.Where(x => x.Course.ID == (ComboBoxCourseFilter.SelectedItem as Course).ID);
+                }
+                else
+                {
+                    ListBoxContracts.ItemsSource = repository.Contracts.Where(x => x.Student.ID == (ComboBoxStudentFilter.SelectedItem as Student).ID && x.Course.ID == (ComboBoxCourseFilter.SelectedItem as Course).ID);
+                }
             }
         }
+        
         #endregion
 
         #region Courses
@@ -158,7 +155,6 @@ namespace cOURSEwoRK
             Hide();
             courseWindow.ShowDialog();
             Show();
-            TextBlockCourseInfo.Text = "Please refresh info";
             repository.UpdateCourses();
             ComboBoxCourseFilter.ItemsSource = repository.Courses;
         }
@@ -166,25 +162,9 @@ namespace cOURSEwoRK
         private void ButtonRefreshCourses_Click(object sender, RoutedEventArgs e)
         {
             UpdateListboxes();
-            TextBlockCourseInfo.Text = "Choose course to view info";
-            ButtonChangeCourse.IsEnabled = false;
-            ButtonDeleteCourse.IsEnabled = false;
             ButtonTimetable.IsEnabled = false;
-        }
-
-        private void ListBoxCourses_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ButtonChangeCourse.IsEnabled = true;
-            ButtonDeleteCourse.IsEnabled = true;
-            ButtonTimetable.IsEnabled = true;
-            if (ListBoxContracts.SelectedItems.Count > 1)
-            {
-                ListBoxContracts.SelectedItems.RemoveAt(0);
-            }
-            var chosenCourse = (Course)ListBoxCourses.SelectedItem;
-            if (chosenCourse != null)
-                TextBlockCourseInfo.Text = $"Name: {chosenCourse.Name}; Dates: {chosenCourse.StartDate.ToShortDateString()}-{chosenCourse.EndDate.ToShortDateString()}; " +
-                    $"Price:{chosenCourse.Price};  Exam: {chosenCourse.FollowedByExam}; Requirements: {chosenCourse.HasRequirements} ";
+            ButtonAddSubject.IsEnabled = true;
+            ButtonAddCourse.IsEnabled = true;
         }
         private void ButtonTimetable_Click(object sender, RoutedEventArgs e)
         {
@@ -198,17 +178,6 @@ namespace cOURSEwoRK
             Course course = (Course)ListBoxCourses.SelectedItem;
             DBUtils.DeleteCourse(course, connString);
             MessageBox.Show("course deleted");
-            TextBlockCourseInfo.Text = "Please refresh info";
-        }
-
-        private void ButtonChangeCourse_Click(object sender, RoutedEventArgs e)
-        {
-            var course = (Course)ListBoxCourses.SelectedItem;
-            var courseWindow = new MakeCourse(managerID, connString,repository, course);
-            Hide();
-            courseWindow.ShowDialog();
-            Show();
-            TextBlockCourseInfo.Text = "Please refresh info";
         }
 
 
@@ -246,26 +215,6 @@ namespace cOURSEwoRK
             repository.UpdateStudents();
             ListBoxStudents.ItemsSource = repository.Students;
             ListBoxStudents.SelectedItem = null;
-            ButtonChangeStudent.IsEnabled = false;
-            TextBlockStudentInfo.Text = "Choose student to view info";
-        }
-
-        private void ListBoxStudents_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (ListBoxStudents.SelectedItems.Count > 1)
-                ListBoxStudents.SelectedItems.RemoveAt(0);
-            ButtonChangeStudent.IsEnabled = true;
-            var chosenStudent = (Student)ListBoxStudents.SelectedItem;
-            if (chosenStudent != null)
-                TextBlockStudentInfo.Text = $"Name: {chosenStudent.Name} {chosenStudent.Surname} Date of birth: {chosenStudent.DoB.ToShortDateString()} Gender:{chosenStudent.Gender}";
-        }
-
-
-
-        private void ButtonChangeStudent_Click(object sender, RoutedEventArgs e)
-        {
-            var studentWindow = new AddStudent(connString, (Student)ListBoxStudents.SelectedItem);
-            studentWindow.ShowDialog();
         }
 
         private void ButtonAddStudent_Click(object sender, RoutedEventArgs e)
@@ -276,7 +225,31 @@ namespace cOURSEwoRK
             ComboBoxStudentFilter.ItemsSource = repository.Students;
         }
         #endregion
-        
+
+        private void ListBoxCourses_Selected(object sender, RoutedEventArgs e)
+        {
+            ButtonTimetable.IsEnabled = true;
+            var chosenCourse = (Course)ListBoxCourses.SelectedItem;
+        }
+
+        private void ListBoxCourses_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var course = (Course)ListBoxCourses.SelectedItem;
+            var courseWindow = new MakeCourse(managerID, connString, repository, course);
+            Hide();
+            courseWindow.ShowDialog();
+            Show();
+            ButtonAddCourse.IsEnabled = false;
+            ButtonTimetable.IsEnabled = false;
+            ButtonAddSubject.IsEnabled = false;
+        }
+
+        private void ListBoxStudents_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            var studentWindow = new AddStudent(connString, (Student)ListBoxStudents.SelectedItem);
+            studentWindow.ShowDialog();
+        }
     }
-    
+
 }

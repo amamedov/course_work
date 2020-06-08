@@ -13,7 +13,7 @@ namespace Models
         public Course Course { get; set; }
         public int ManagerID { get; }
         public bool IsActive { get; }
-        public bool IsPaid { get; }
+        public bool IsPaid { get; set; }
         public DateTime DateTimeMade { get; }
         public Contract(int id, int student, int course, int managerID, bool isActive, bool isPaid, DateTime dateTime)
         {
@@ -25,7 +25,6 @@ namespace Models
             this.IsPaid = isPaid;
             this.DateTimeMade = dateTime;
         }
-        public string ToListBox { get { return $"Student: {Student.Name} {Student.Surname};     Course: {Course.Name}"; } }
-
+        public string ShortDate { get { return DateTimeMade.ToShortDateString() + " " + DateTimeMade.ToShortTimeString(); } }
     }
 }

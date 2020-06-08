@@ -32,6 +32,7 @@ namespace ManagerApp
             ComboBoxTypeOfCourse.ItemsSource = repository.TypeOfCourses;
             if (course != null)
             {
+                head.Text = "Update course info";
                 TextBoxName.Text = course.Name;
                 TextBoxPrice.Text = course.Price.ToString();
                 ComboBoxSubject.SelectedItem = ComboBoxSubject.Items.Cast<Subject>().ToList().First(x => x.ID == course.SubjectID);
@@ -52,32 +53,51 @@ namespace ManagerApp
 
         private void ButtonSubmit_Click(object sender, RoutedEventArgs e)
         {
-            bool followedByExam = CheckBoxExam.IsChecked == true ? true : false;
-            bool hasRequirements = CheckBoxRequirements.IsChecked == true ? true : false;
-            try
+            if (StartDatePicker.SelectedDate <= EndDatePicker.SelectedDate)
             {
-                if (course is null)
+                bool followedByExam = CheckBoxExam.IsChecked == true ? true : false;
+                bool hasRequirements = CheckBoxRequirements.IsChecked == true ? true : false;
+                try
                 {
-                    if (DBUtils.AddCourse(TextBoxName.Text, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, double.Parse(TextBoxPrice.Text),
-                        managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name,connString) == 1)
+                    if (course is null)
                     {
-                        MessageBox.Show("Course has been added to database");
-                        Close();
+                        try
+                        {
+                            if (DBUtils.AddCourse(TextBoxName.Text, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, double.Parse(TextBoxPrice.Text),
+                                managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name, connString) == 1)
+                            {
+                                MessageBox.Show("Course has been added to database");
+                                Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Such course already exists");
+                        }  
+                    }
+                    else
+                    {
+                        try
+                        {
+                            if (DBUtils.UpdateCourse(course, TextBoxName.Text, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, double.Parse(TextBoxPrice.Text),
+                           managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name, connString) == 1)
+                            {
+                                MessageBox.Show("Changes saved");
+                                Close();
+                            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Such course already exists");
+                        }
+                       
                     }
                 }
-                else
+
+                catch
                 {
-                    if (DBUtils.UpdateCourse(course, TextBoxName.Text, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, double.Parse(TextBoxPrice.Text),
-                        managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name, connString) == 1)
-                    {
-                        MessageBox.Show("Changes saved");
-                        Close();
-                    }
+                    MessageBox.Show("Fill in all the fields correctly");
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Fill in all the fields correctly");
             }
         }
     }

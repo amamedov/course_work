@@ -26,13 +26,13 @@
         <DatePicker x:Name="DatePicker" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15"></DatePicker>
         <TextBlock Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">Choose time:</TextBlock>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
-            <ComboBox x:Name="ComboBoxStartHour" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <ComboBox x:Name="ComboBoxStartHour"  FontSize="16" VerticalAlignment="Center"></ComboBox>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">:</TextBlock>
             <ComboBox x:Name="ComboBoxStartMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15"> - </TextBlock>
-            <ComboBox x:Name="ComboBoxEndHour" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <ComboBox   x:Name="ComboBoxEndHour" FontSize="16" VerticalAlignment="Center"></ComboBox>
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Margin="10 15">:</TextBlock>
-            <ComboBox x:Name="ComboBoxEndMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
+            <ComboBox  x:Name="ComboBoxEndMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
         <Button Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="10 15" x:Name="ButtonClose" Click="ButtonClose_Click">Cancel</Button>
         <Button Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="20 15" x:Name="ButtonAdd" Click="ButtonAdd_Click">Add</Button>

@@ -1,0 +1,107 @@
+﻿<Window x:Class="TeacherApp.ExtraWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TeacherApp"
+        mc:Ignorable="d"
+        Title="Add extra material" Height="500" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center">Choose type of material:</TextBlock>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Orientation="Vertical">
+                <RadioButton GroupName="A" Margin="5" Checked="RadioButton_Checked" FontSize="16">Video</RadioButton>
+                <RadioButton GroupName="A" Margin="5" Checked="RadioButton_Checked" FontSize="16">Website</RadioButton>
+                <RadioButton GroupName="A" Margin="5" Checked="RadioButton_Checked" FontSize="16">Lecture slides</RadioButton>
+                <RadioButton GroupName="A" Margin="5" Checked="RadioButton_Checked" FontSize="16">Printed</RadioButton>
+            </StackPanel>
+        </Grid>
+        <Grid Visibility="Hidden" Grid.Row="2" Grid.ColumnSpan="4" x:Name="Video">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Length: </TextBlock>
+            <TextBox x:Name="VideoLength" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">Description(optional):</TextBlock>
+            <TextBox Name="VideoDescr" FontSize="16" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+        </Grid>
+        <Grid Visibility="Hidden"  Grid.Row="2" Grid.ColumnSpan="4" x:Name="Website">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox x:Name="WebsiteName" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">Description(optional):</TextBlock>
+            <TextBox Name="WebsiteDescr" FontSize="16" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">URL:</TextBlock>
+            <TextBox Grid.Row="1" Name="WebsiteURL" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+        </Grid>
+        <Grid Visibility="Hidden"  Grid.Row="2" Grid.ColumnSpan="4" x:Name="Lecture">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox x:Name="LectureName" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">Description(optional):</TextBlock>
+            <TextBox Name="LectureDescr" FontSize="16" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">Number of slides:</TextBlock>
+            <TextBox Grid.Row="1" Name="LectureSlides" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+        </Grid>
+        <Grid Visibility="Hidden"  Grid.Row="2" Grid.ColumnSpan="4" x:Name="Printed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center">Name:</TextBlock>
+            <TextBox x:Name="PrintedName" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2">Description(optional):</TextBlock>
+            <TextBox Name="PrintedDescr" FontSize="16" Grid.Column="3" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+            <TextBlock Grid.Row="1" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0">Number of pages:</TextBlock>
+            <TextBox Grid.Row="1" Name="PrintedPages" FontSize="16" Grid.Column="1" HorizontalAlignment="Stretch" Margin="5" VerticalAlignment="Center"></TextBox>
+        </Grid>
+        <Button Grid.Column="1" Name="Save" Click="Save_Click" Grid.Row="3" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="15 10">Save</Button>
+    </Grid>
+</Window>
