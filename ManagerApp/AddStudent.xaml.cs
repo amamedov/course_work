@@ -20,11 +20,11 @@ namespace ManagerApp
     public partial class AddStudent : Window
     {
         Student student = null;
-        string connString;
-        public AddStudent(string connString,Student student=null)
+        Repository repository;
+        public AddStudent(Repository repository,Student student=null)
         {
             InitializeComponent();
-            this.connString = connString;
+            this.repository = repository;
             var genders = new List<string>();
             genders.Add("Male");
             genders.Add("Female");
@@ -56,9 +56,10 @@ namespace ManagerApp
                     try
                     {
                         if (student == null)
-                            if (DBUtils.AddStudent(TextBoxName.Text, TextBoxSurname.Text, (DateTime)DatePickerDOB.SelectedDate, (string)ComboBoxGender.SelectedItem, connString) == 1)
+                            if (DBUtils.AddStudent(TextBoxName.Text, TextBoxSurname.Text, (DateTime)DatePickerDOB.SelectedDate, (string)ComboBoxGender.SelectedItem, repository.ConnString) == 1)
                             {
                                 MessageBox.Show("Changes saved to database");
+                                repository.Students.Add(DBUtils.GetLastStudents(repository));
                                 Close();
                             }
                             else
@@ -67,11 +68,11 @@ namespace ManagerApp
                             }
                         else
                         {
+                            DBUtils.UpdateStudent(TextBoxName.Text, TextBoxSurname.Text, (DateTime)DatePickerDOB.SelectedDate, (string)ComboBoxGender.SelectedItem, student, repository.ConnString);
                             student.Name = TextBoxName.Text;
                             student.Surname = TextBoxSurname.Text;
                             student.DoB = (DateTime)DatePickerDOB.SelectedDate;
                             student.Gender = (string)ComboBoxGender.SelectedItem;
-                            DBUtils.UpdateStudent(student, connString);
                             MessageBox.Show("Changes saved to database");
                             Close();
                         }

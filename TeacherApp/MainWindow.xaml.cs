@@ -37,7 +37,11 @@ namespace TeacherApp
         private void ComboBoxCourse_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             course = (Course)ComboBoxCourse.SelectedItem;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course&&x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
+            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
+            foreach (var item in ListBoxLessons.Items)
+            {
+                (item as Lesson).VisibleForExtra = false;
+            }
             ListBoxPastLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart < DateTime.Now);
             ButtonStudentList.IsEnabled = true;
         }
@@ -63,12 +67,15 @@ namespace TeacherApp
 
         private void ListBoxLessons_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var item in (sender as ListBox).Items)
+            if ((sender as ListBox).SelectedItem != null)
             {
-                (item as Lesson).VisibleForExtra = false;
+                foreach (var item in (sender as ListBox).Items)
+                {
+                    (item as Lesson).VisibleForExtra = false;
+                }
+           ((sender as ListBox).SelectedItem as Lesson).VisibleForExtra = true;
+                ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
             }
-            ((sender as ListBox).SelectedItem as Lesson).VisibleForExtra = true;
-            ListBoxLessons.ItemsSource = repository.Lessons.Where(x => x.Course == course && x.TeacherID == teacher.ID && x.DTStart >= DateTime.Now);
         }
     }
 }

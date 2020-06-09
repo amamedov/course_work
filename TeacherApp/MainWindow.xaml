@@ -48,10 +48,10 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20*" />
-                    <RowDefinition Height="60*" MaxHeight="30" />
+                    <RowDefinition Height="60*" MaxHeight="35" />
                     <RowDefinition Height="20*" />
                 </Grid.RowDefinitions>
-                <ComboBox HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="ComboBoxCourse" FontSize="16" SelectionChanged="ComboBoxCourse_SelectionChanged"></ComboBox>
+                <ComboBox Grid.ColumnSpan="2" HorizontalContentAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="ComboBoxCourse" FontSize="16" Margin="2" SelectionChanged="ComboBoxCourse_SelectionChanged"></ComboBox>
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Grid.Row="3">

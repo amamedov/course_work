@@ -1,6 +1,7 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Dynamic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -11,9 +12,9 @@ namespace Core
     public class Repository
     {
         public string OutputPath { get; set; }
-        public List<Contract> Contracts { get; set; }
-        public List<Student> Students { get; set; }
-        public List<Course> Courses { get; set; }
+        public ObservableCollection<Contract> Contracts { get; set; }
+        public ObservableCollection<Student> Students { get; set; }
+        public ObservableCollection<Course> Courses { get; set; }
         public List<Manager> Managers { get; set; }
         public List<Teacher> Teachers { get; set; }
         public List<Subject> Subjects { get; set; }
@@ -22,19 +23,20 @@ namespace Core
         public List<Building> Buildings { get; set; }
         public List<Room> Rooms { get; set; }
         public List<Lesson> Lessons { get; set; }
+
         public Repository(string connString)
         {
-           
+
             ConnString = connString;
             PrepareData();
         }
         public void PrepareData()
         {
-            Students = DBUtils.GetStudents(ConnString).OrderBy(x => x.Name).ThenBy(x => x.Surname).ToList();
+            Students = new ObservableCollection<Student>(DBUtils.GetStudents(ConnString).OrderBy(x => x.Name).ThenBy(x => x.Surname).ToList());
             Managers = DBUtils.GetManagers(ConnString);
             Teachers = DBUtils.GetTeachers(ConnString).OrderBy(x => x.Name).ThenBy(x => x.Surname).ToList();
-            Courses = DBUtils.GetCourses(ConnString).OrderBy(x => x.Name).ThenBy(x => x.StartDate).ToList();
-            Contracts = DBUtils.GetContracts(ConnString);
+            Courses = new ObservableCollection<Course>( DBUtils.GetCourses(ConnString).OrderBy(x => x.Name).ThenBy(x => x.StartDate).ToList());
+            Contracts = new ObservableCollection<Contract>(DBUtils.GetContracts(ConnString));
             Subjects = DBUtils.GetSubjects(ConnString);
             TypeOfCourses = DBUtils.GetTypeOfCourses(ConnString);
             Buildings = DBUtils.GetBuildings(ConnString);
@@ -58,39 +60,13 @@ namespace Core
             }
         }
 
-       public void UpdateAttendance()
+        public void UpdateAttendance()
         {
             foreach (var lesson in Lessons)
             {
                 lesson.Attendance = new ExpandoObject();
-                DBUtils.FillAttendance(lesson, ConnString);
+                DBUtils.GetAttendance(lesson, ConnString);
             }
-        }
-        public void UpdateContracts()
-        {
-            Contracts = DBUtils.GetContracts(ConnString);
-            foreach (var contract in Contracts)
-            {
-                contract.Student = Students.First(x => x.ID == contract.StudentID);
-                contract.Course = Courses.First(x => x.ID == contract.CourseID);
-            }
-        }
-        public void UpdateCourses()
-        {
-            Courses = DBUtils.GetCourses(ConnString).OrderBy(x => x.Name).ThenBy(x => x.StartDate).ToList();
-        }
-        public void UpdateStudents()
-        {
-            Students = DBUtils.GetStudents(ConnString).OrderBy(x => x.Name).ThenBy(x => x.Surname).ToList();
-        }
-
-        public void UpdateManagers()
-        {
-            Managers = DBUtils.GetManagers(ConnString);
-        }
-        public void UpdateTeachers()
-        {
-            Teachers = DBUtils.GetTeachers(ConnString).OrderBy(x => x.Name).ThenBy(x => x.Surname).ToList();
         }
         public void UpdateSubjects()
         {

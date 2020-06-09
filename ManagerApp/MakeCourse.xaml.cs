@@ -23,9 +23,11 @@ namespace ManagerApp
         int managerID;
         Course course;
         string connString;
+        Repository repository;
         public MakeCourse(int managerID, string connString, Repository repository, Course course = null)
         {
             InitializeComponent();
+            this.repository = repository;
             this.connString = connString;
             this.managerID = managerID;
             ComboBoxSubject.ItemsSource = repository.Subjects;
@@ -55,10 +57,10 @@ namespace ManagerApp
         {
             if (StartDatePicker.SelectedDate <= EndDatePicker.SelectedDate)
             {
-                bool followedByExam = CheckBoxExam.IsChecked == true ? true : false;
-                bool hasRequirements = CheckBoxRequirements.IsChecked == true ? true : false;
-                try
+                if (double.TryParse(TextBoxPrice.Text, out double a))
                 {
+                    bool followedByExam = CheckBoxExam.IsChecked == true ? true : false;
+                    bool hasRequirements = CheckBoxRequirements.IsChecked == true ? true : false;
                     if (course is null)
                     {
                         try
@@ -67,13 +69,14 @@ namespace ManagerApp
                                 managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name, connString) == 1)
                             {
                                 MessageBox.Show("Course has been added to database");
+                                repository.Courses.Add(DBUtils.GetLastCourse(repository));
                                 Close();
                             }
                         }
                         catch
                         {
                             MessageBox.Show("Such course already exists");
-                        }  
+                        }
                     }
                     else
                     {
@@ -82,22 +85,35 @@ namespace ManagerApp
                             if (DBUtils.UpdateCourse(course, TextBoxName.Text, (DateTime)StartDatePicker.SelectedDate, (DateTime)EndDatePicker.SelectedDate, double.Parse(TextBoxPrice.Text),
                            managerID, followedByExam, hasRequirements, ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).Name, ((Subject)ComboBoxSubject.SelectedItem).Name, connString) == 1)
                             {
+                                course.Name = TextBoxName.Text;
+                                course.StartDate = (DateTime)StartDatePicker.SelectedDate;
+                                course.EndDate = (DateTime)EndDatePicker.SelectedDate;
+                                course.Price = double.Parse(TextBoxPrice.Text);
+                                course.FollowedByExam = followedByExam;
+                                course.HasRequirements = hasRequirements;
+                                course.TypeID = ((TypeOfCourse)ComboBoxTypeOfCourse.SelectedItem).ID;
+                                course.SubjectID = ((Subject)ComboBoxSubject.SelectedItem).ID;
                                 MessageBox.Show("Changes saved");
                                 Close();
                             }
                         }
-                        catch
+                        catch (Exception x)
                         {
+                            MessageBox.Show(x.Message);
                             MessageBox.Show("Such course already exists");
                         }
-                       
-                    }
-                }
 
-                catch
-                {
-                    MessageBox.Show("Fill in all the fields correctly");
+                    }
+
                 }
+                else
+                {
+                    MessageBox.Show("Invalid price value");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Pick correct dates");
             }
         }
     }

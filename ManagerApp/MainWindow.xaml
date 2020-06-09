@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:cOURSEwoRK"
         mc:Ignorable="d"
-        Title="Management" WindowStyle="ThreeDBorderWindow"  Height="600" Width="1200"  ResizeMode="NoResize">
+        Title="Management" WindowStyle="ThreeDBorderWindow" WindowStartupLocation="CenterScreen"  Height="600" Width="1200"  ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -30,7 +30,7 @@
                             <ComboBox VerticalAlignment="Center" SelectionChanged="ComboBoxSubjectFilter_SelectionChanged" SelectedItem="Any" FontSize="16" Margin="10 15" x:Name="ComboBoxSubjectFilter"></ComboBox>
                             <Button x:Name="ClearButton" FontSize="16" Margin="100 15 10 15" Padding="10 8" Click="ClearButton_Click">Clear</Button>
                         </StackPanel>
-                        <DataGrid Grid.Row="1" MouseDoubleClick="ListBoxCourses_MouseDoubleClick" SelectionChanged="ListBoxCourses_Selected"  AutoGenerateColumns="False" x:Name="ListBoxCourses" BorderThickness="1" FontSize="16" Grid.Column="3">
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding Path=repository.Courses, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MouseDoubleClick="ListBoxCourses_MouseDoubleClick" SelectionChanged="ListBoxCourses_Selected"  AutoGenerateColumns="False" x:Name="ListBoxCourses" BorderThickness="1" FontSize="16" Grid.Column="3">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Header="Name" Binding="{Binding Path=Name, Mode=OneWay}"></DataGridTextColumn>
                                 <DataGridTextColumn IsReadOnly="True" Header="Start date" Binding="{Binding Path=ShortStart, Mode=OneWay}"></DataGridTextColumn>
@@ -40,11 +40,10 @@
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>                    
-                    <StackPanel Orientation="Vertical" Grid.ColumnSpan="1">
-                        <Button x:Name="ButtonAddCourse" FontSize="16" Height="auto" Margin="15 60 15 10" Padding="15 10" Click="ButtonAddCourse_Click">Add course</Button>
+                    <StackPanel Orientation="Vertical" Grid.ColumnSpan="1" VerticalAlignment="Center">
+                        <Button x:Name="ButtonAddCourse" FontSize="16" Height="auto" Margin="15 0 15 10" Padding="15 10" Click="ButtonAddCourse_Click">Add course</Button>
                         <Button x:Name="ButtonAddSubject" FontSize="16" Height="auto" Margin="15  10" Padding="15 10" Click="ButtonAddSubject_Click">Add subject</Button>
                         <Button x:Name="ButtonTimetable" Click="ButtonTimetable_Click" FontSize="16" Height="auto" Margin="15 10" Padding="15 10">Manage timetable</Button>
-                        <Button x:Name="ButtonRefreshCourses" FontSize="16" Margin="15 10" Padding="15 10" Click="ButtonRefreshCourses_Click">Refresh</Button>
                     </StackPanel>
                     <Button x:Name="ButtonExit" Click="ButtonExit_Click"  FontSize="16" Height="auto" Margin="25,0,25,15" Padding="15 10" VerticalAlignment="Bottom" Grid.ColumnSpan="1">Exit</Button>
                 </Grid>
@@ -69,19 +68,18 @@
                             <ComboBox  VerticalAlignment="Center" SelectionChanged="ComboBoxCourseFilter_SelectionChanged" SelectedItem="Any" FontSize="16" Margin="10 15" x:Name="ComboBoxCourseFilter"></ComboBox>
                             <Button x:Name="ClearButton_1" FontSize="16" Margin="100 15 10 15" Padding="10 8" Click="ClearButton_1_Click">Clear</Button>
                         </StackPanel>
-                        <DataGrid Grid.Row="1" BorderThickness="1" AutoGenerateColumns="False" FontSize="16" x:Name="ListBoxContracts" SelectionChanged="ListBoxContracts_SelectionChanged">
+                        <DataGrid Grid.Row="1" ItemsSource="{Binding Path=repository.Contracts, Mode=TwoWay}"  BorderThickness="1" AutoGenerateColumns="False" FontSize="16" x:Name="ListBoxContracts" SelectionChanged="ListBoxContracts_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True"  Header="Student" Binding="{Binding Path=Student.FullName}"/>
                                 <DataGridTextColumn IsReadOnly="True"  Header="Course" Binding="{Binding Path=Course.GridView}"/>
                                 <DataGridTextColumn IsReadOnly="True"  Header="Made" Binding="{Binding Path=ShortDate}"/>
-                                <DataGridCheckBoxColumn IsReadOnly="True"  Header="Paid" Binding="{Binding Path=IsPaid}"/>
+                                <DataGridCheckBoxColumn CanUserSort="False" IsReadOnly="True"  Header="Paid" Binding="{Binding Path=IsPaid, Mode=TwoWay}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
-                    <StackPanel Orientation="Vertical">
-                        <Button x:Name="ButtonAddContract" Click="ButtonAddContract_Click" FontSize="16" Height="auto" Margin="15 60 15 10" Padding="15 10">Add</Button>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                        <Button x:Name="ButtonAddContract" Click="ButtonAddContract_Click" FontSize="16" Height="auto" Margin="15 10 15 10" Padding="15 10">Add contract</Button>
                         <Button x:Name="ButtonMarkAsPaid" FontSize="16" Height="auto" Margin="15 10" Padding="15 10" Click="ButtonMarkAsPaid_Click">Payment</Button>
-                        <Button x:Name="ButtonRefreshContracts" FontSize="16" Height="auto" Margin="15 10" Padding="15 10" Click="ButtonRefreshContracts_Click">Refresh</Button>
                     </StackPanel>
                     <Button x:Name="ButtonExit1" Click="ButtonExit_Click"  FontSize="16" Height="auto" Margin="25 15" Padding="15 10" VerticalAlignment="Bottom">Exit</Button>
                 </Grid>
@@ -92,9 +90,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="4*"/>
                     </Grid.ColumnDefinitions>
-                    <StackPanel>
-                        <Button x:Name="ButtonAddStudent" Click="ButtonAddStudent_Click" HorizontalAlignment="Center" Margin="10 60 10 20" FontSize="16" Padding="10 15">Add student</Button>
-                        <Button x:Name="ButtonRefreshStudents" HorizontalAlignment="Center" Margin="10 20" FontSize="16" Padding="10 15" Click="ButtonRefreshStudents_Click">Refresh</Button>
+                    <StackPanel VerticalAlignment="Center">
+                        <Button x:Name="ButtonAddStudent" Click="ButtonAddStudent_Click" HorizontalAlignment="Center" Margin="10 0 10 0" FontSize="16" Padding="10 15">Add student</Button>
                     </StackPanel>
                     <Button Click="ButtonExit_Click" FontSize="16" Height="auto" Margin="25 15" Padding="15 10" VerticalAlignment="Bottom">Exit</Button>
                     <Grid Grid.Column="1">
@@ -103,7 +100,7 @@
                             <RowDefinition/>
                             <RowDefinition Height="15"/>
                         </Grid.RowDefinitions>
-                        <DataGrid  MouseDoubleClick="ListBoxStudents_MouseDoubleClick" Margin="5" AutoGenerateColumns="False" x:Name="ListBoxStudents" FontSize="16" BorderThickness="1" Grid.RowSpan="1" Grid.Row="1" >
+                        <DataGrid  MouseDoubleClick="ListBoxStudents_MouseDoubleClick" ItemsSource="{Binding Path=repository.Students, Mode=TwoWay}" Margin="5" AutoGenerateColumns="False" x:Name="ListBoxStudents" FontSize="16" BorderThickness="1" Grid.RowSpan="1" Grid.Row="1" >
                             <DataGrid.Columns>
                                 <DataGridTextColumn IsReadOnly="True" Header="Name" Binding="{Binding Path=Name}"/>
                                 <DataGridTextColumn  IsReadOnly="True" Header="Surname" Binding="{Binding Path=Surname}"/>

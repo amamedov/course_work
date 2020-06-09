@@ -35,6 +35,6 @@
             <ComboBox  x:Name="ComboBoxEndMinute" FontSize="16" VerticalAlignment="Center"></ComboBox>
         </StackPanel>
         <Button Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="10 15" x:Name="ButtonClose" Click="ButtonClose_Click">Cancel</Button>
-        <Button Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="20 15" x:Name="ButtonAdd" Click="ButtonAdd_Click">Add</Button>
+        <Button Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="16" Padding="20 15" x:Name="ButtonAdd" Click="ButtonAdd_Click">Save</Button>
     </Grid>
 </Window>

@@ -29,6 +29,8 @@ namespace ManagerApp
             this.repository = repository;
             this.managerID = managerID;
             ComboBoxCourse.ItemsSource = repository.Courses;
+            ComboBoxStudent.ItemsSource = repository.Students;
+            ComboBoxStudent.SelectedIndex = -1;
             ComboBoxCourse.SelectedIndex = -1;
         }
 
@@ -41,10 +43,10 @@ namespace ManagerApp
         {
             try
             {
-                DBUtils.AddContract(TextBoxName.Text, TextBoxSurname.Text, (ComboBoxCourse.SelectedItem as Course).ID, managerID, repository.ConnString);
-
+                var student = ComboBoxStudent.SelectedItem as Student;
+                DBUtils.AddContract(student.Name, student.Surname, (ComboBoxCourse.SelectedItem as Course).ID, managerID, repository.ConnString);
                 MessageBox.Show("Contract added to the database");
-                repository.UpdateContracts();
+                repository.Contracts.Add(DBUtils.GetLastContract(repository));
                 Close();
             }
             catch (Exception x)
